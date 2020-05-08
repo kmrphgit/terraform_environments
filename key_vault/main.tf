@@ -11,6 +11,8 @@ resource "azurerm_key_vault" "key_vault" {
   purge_protection_enabled    = false
 
   sku_name = "standard"
+
+  tags = var.tags
 }
 
 resource "azurerm_key_vault_access_policy" "kv_access_policy" {
