@@ -4,6 +4,7 @@ terraform {
     storage_account_name = var.tf_state_sa
     container_name       = lower(var.environment_code)
     key                  = "${lower(var.az_region_code)_${lower(environment_code)}_${lower(var.role_code)}.terraform.tfstate"
+  }
 }
 
 resource "azurerm_virtual_network" "vnet" {
