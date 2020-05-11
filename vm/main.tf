@@ -4,6 +4,9 @@
 #   }
 # }
 
+
+
+
 locals {
   vm_win_name_prefix   = "${var.client_code}${upper(var.az_region_code)}${var.environment_code}${var.role_code}${var.vm_os}"
   vm_linux_name_prefix = "${var.client_code}${upper(var.az_region_code)}${var.environment_code}${var.role_code}${var.vm_os}"
@@ -43,8 +46,8 @@ resource "azurerm_windows_virtual_machine" "win_vm" {
   location              = var.az_region
   size                  = var.vm_sku
   resource_group_name   = var.rsg_name
-  admin_username        = "azureadmin"
-  admin_password        = "Password12345!"
+  admin_username        = data.azurerm_key_vault_secret.admin_username.value
+  admin_password        = data.azurerm_key_vault_secret.admin_pw.value
   computer_name         = "${local.vm_win_name_prefix}0${var.vm_iteration}"
 
 
@@ -77,8 +80,8 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   resource_group_name             = var.rsg_name
   network_interface_ids           = ["${element(azurerm_network_interface.linux_nic.*.id, count.index)}"]
   size                            = var.vm_sku
-  admin_username                  = "azureadmin"
-  admin_password                  = "Password12345!"
+  admin_username                  = data.azurerm_key_vault_secret.admin_username.value
+  admin_password                  = data.azurerm_key_vault_secret.admin_pw.value
   computer_name                   = "${local.vm_linux_name_prefix}0${var.vm_iteration}"
   disable_password_authentication = false
 
