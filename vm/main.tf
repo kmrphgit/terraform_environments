@@ -1,11 +1,10 @@
 # terraform {
-#   backend "local" {
-#     path = "relative/path/to/terraform.tfstate"
-#   }
+#   backend "azurerm" {
+#     resource_group_name  = var.tf_state_sa_rsg
+#     storage_account_name = var.tf_state_sa
+#     container_name       = upper(var.environment_code)
+#     key                  = "${lower(var.az_region_code)_lower(environment_code)_lower(var.role_code)}.terraform.tfstate"
 # }
-
-
-
 
 locals {
   vm_win_name_prefix   = "${var.client_code}${upper(var.az_region_code)}${var.environment_code}${var.role_code}${var.vm_os}"
