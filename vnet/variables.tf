@@ -16,6 +16,11 @@ variable "az_region_code" {
   description = "Short-hand code for Azure region used in resource naming"
 }
 
+variable "role_code" {
+  type        = string
+  description = "Short-hand code for descriptive name of role for resource group e.g. API, UI, NET, SQL, etc"
+}
+
 variable "rsg_name" {
   type        = string
   description = "Dynamically obtained name for resource group to deploy resources to; from rsg module"
