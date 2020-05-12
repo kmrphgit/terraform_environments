@@ -16,5 +16,5 @@ resource "azurerm_subnet" "subnet" {
   name                 = element(var.subnet_names, count.index)
   resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = element(var.subnet_address_spaces[var.tags.tag-Environment], count.index)
+  address_prefix       = element(var.subnet_address_spaces[var.tags.tag-Environment], count.index)
 }
