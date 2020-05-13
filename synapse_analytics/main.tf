@@ -4,7 +4,7 @@ resource "azurerm_sql_server" "sql_server" {
   location                     = local.az_region
   version                      = "12.0"
   administrator_login          = "sqladmin"
-  administrator_login_password = "4v3ry53cr37p455w0rd"
+  administrator_login_password = "P@ssw0rd12345!"
 
   tags = var.tags
 }
