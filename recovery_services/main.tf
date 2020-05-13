@@ -1,13 +1,15 @@
+terraform {
+  backend "azurerm" {}
+}
+
 resource "azurerm_recovery_services_vault" "vault" {
-  name                = "${var.client_code}-${upper(var.az_region_code)}-${var.tags.tag-Environment}-${var.role_code}-RSV"
+  name                = "${local.common_name_prefix}-${var.role_code}-RSV"
   location            = var.az_region
   resource_group_name = var.rsg_name
-  sku                 = var.rsv_sku #"Standard"
+  sku                 = var.rsv_sku
 
   soft_delete_enabled = false
 }
-
-
 
 resource "azurerm_backup_container_storage_account" "vm_backup" {
   resource_group_name = var.rsg_name

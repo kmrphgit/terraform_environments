@@ -7,7 +7,7 @@ terraform {
 
 resource "azurerm_resource_group" "rsg" {
     name     = "${local.common_name_prefix}-${var.role_code}-RSG"
-    location = var.az_region
+    location = local.az_region
 
     tags     = var.tags
 }
