@@ -3,7 +3,7 @@ terraform {
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.client_code}-${upper(var.az_region_code)}-${var.tags.tag-Environment}-${replace(var.vnet_address_space[var.tags.tag-Environment], "/", "-")}"
+  name                = "${local.vnet_name_prefix}-${replace(var.vnet_address_space[var.tags.tag-Environment], "/", "-")}"
   resource_group_name = var.rsg_name
   address_space       = [var.vnet_address_space[var.tags.tag-Environment]]
   location            = local.az_region
