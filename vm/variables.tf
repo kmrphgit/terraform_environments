@@ -82,3 +82,13 @@ variable "vm_iteration" {
   type        = string
   description = "Iteration of VM(s); example 1 equals first VM to be created 'somevm01' "
 }
+
+variable "kv_name" {
+  type = string
+  description = "String value for name of Key Vault for secret referencing"
+}
+
+variable "kv_rsg" {
+  type = string
+  description = "String value for name of Key Vault resource group for secret referencing"
+}

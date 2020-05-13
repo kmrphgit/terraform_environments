@@ -5,8 +5,8 @@ data "azurerm_subnet" "subnet" {
 }
 
 data "azurerm_key_vault" "key_vault" {
-  name                = "KMH-EU2-DEV-KV-kv"
-  resource_group_name = "KMH-EU2-DEV-HUB-RSG"
+  name                = var.kv_name
+  resource_group_name = var.kv_rsg
 }
 data "azurerm_key_vault_secret" "admin_username" {
   name         = "server-admin-username"
