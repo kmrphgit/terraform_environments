@@ -11,5 +11,5 @@ output "sa_primary_key" {
 }
 
 output "sa_primary_blob_endpoint" {
-    value = azurerm_storage_account.sa.sa_primary_blob_endpoint
+    value = azurerm_storage_account.sa.primary_blob_endpoint
 }
