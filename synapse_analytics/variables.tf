@@ -3,16 +3,6 @@ variable "rsg_name" {
   description = "Name of VM resource group"
 }
 
-variable "az_region" {
-  type        = string
-  description = "Azure resource region location"
-}
-
-variable "az_region_code" {
-  type        = string
-  description = "Short-hand code for Azure region used in resource naming"
-}
-
 variable "role_code" {
   type        = string
   description = "Short-hand code for descriptive name of role for resource group e.g. API, UI, NET, SQL, etc"
