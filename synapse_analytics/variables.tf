@@ -1,8 +1,3 @@
-variable "client_code" {
-  type        = string
-  description = "Client alpha-numeric code for naming Azure resources"
-}
-
 variable "rsg_name" {
   type        = string
   description = "Name of VM resource group"

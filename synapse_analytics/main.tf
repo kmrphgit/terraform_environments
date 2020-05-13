@@ -1,7 +1,7 @@
 resource "azurerm_sql_server" "sql_server" {
   name                         = "mysqlserver"
   resource_group_name          = var.rsg_name
-  location                     = var.az_region
+  location                     = local.az_region
   version                      = "12.0"
   administrator_login          = "sqladmin"
   administrator_login_password = "4v3ry53cr37p455w0rd"
@@ -9,10 +9,10 @@ resource "azurerm_sql_server" "sql_server" {
   tags = var.tags
 }
 
-resource "azurerm_sql_database" "sql_db" {
-  name                = "${lower(var.client_code)}${lower(var.az_region_code)}${lower(var.tags.tagEnvironment)}${lower(var.role_code)}sqldw"
+resource "azurerm_sql_database" "synapse_db" {
+  name                = "${local.synapse_name_prefix}${var.role_code}sqldw"
   resource_group_name = var.rsg_name
-  location            = var.az_region
+  location            = azurerm_sql_server.sql_server.location
   server_name         = azurerm_sql_server.sql_server.name
   edition             = "DataWarehouse"
 
