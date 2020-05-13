@@ -1,5 +1,5 @@
 resource "azurerm_sql_server" "sql_server" {
-  name                         = "mysqlserver"
+  name                         = "${local.synapse_name_prefix}sqlserver"
   resource_group_name          = var.rsg_name
   location                     = local.az_region
   version                      = "12.0"
