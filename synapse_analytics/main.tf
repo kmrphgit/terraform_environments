@@ -10,7 +10,7 @@ resource "azurerm_sql_server" "sql_server" {
 }
 
 resource "azurerm_sql_database" "synapse_db" {
-  name                = "${local.synapse_name_prefix}${var.role_code}sqldw"
+  name                = "${local.synapse_name_prefix}${lower(var.role_code)}"
   resource_group_name = var.rsg_name
   location            = azurerm_sql_server.sql_server.location
   server_name         = azurerm_sql_server.sql_server.name
