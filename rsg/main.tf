@@ -1,8 +1,8 @@
 #Create resource group(s)
 
-terraform {
-  backend "azurerm" {}
-}
+# terraform {
+#   backend "azurerm" {}
+# }
 
 
 resource "azurerm_resource_group" "rsg" {
