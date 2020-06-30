@@ -1,4 +1,5 @@
 data "azurerm_management_group" "root_mgmt" {
+    name = "root_mgmt"
 }
 
 resource "azurerm_role_definition" "almost_owner" {
