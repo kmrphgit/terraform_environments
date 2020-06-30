@@ -1,5 +1,5 @@
 data "azurerm_management_group" "root_mgmt" {
-    name = "root_mgmt"
+    name = "kloudmorph_root"
 }
 
 resource "azurerm_role_definition" "almost_owner" {
