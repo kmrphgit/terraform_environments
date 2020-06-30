@@ -56,6 +56,6 @@ resource "azurerm_role_definition" "almost_owner" {
   }
 
   assignable_scopes = [
-    data.azurerm_subscription.primary.id, # /subscriptions/00000000-0000-0000-0000-000000000000
+    data.azurerm_management_group.root_mgmt.id, # /subscriptions/00000000-0000-0000-0000-000000000000
   ]
 }
