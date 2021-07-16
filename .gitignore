@@ -1,0 +1,16 @@
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
+identity.tfvars
+
+# Terragrunt
+.terragrunt-cache
+prevent_destroy.hcl
+
+# Creds
+provider_info.sh
+
+#Notes
+notes.md
