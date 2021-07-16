@@ -20,10 +20,10 @@ provider "azurerm" {
   # client_id       = module.globals.spn.subs.client_id
   # client_secret   = module.globals.spn.subs.client_secret
 
-  # subscription_id = var.spn.subs.subscription_id
-  # tenant_id       = var.spn.subs.tenant_id
-  # client_id       = var.spn.subs.client_id
-  # client_secret   = var.spn.subs.client_secret
+  subscription_id = var.spn.subs.subscription_id
+  tenant_id       = var.spn.subs.tenant_id
+  client_id       = var.spn.subs.client_id
+  client_secret   = var.spn.subs.client_secret
 
 }
 
