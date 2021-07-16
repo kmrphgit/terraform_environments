@@ -6,12 +6,12 @@ module "subscriptions" {
   settings = module.globals.sub_settings
 }
 
-resource "null_resource" "login_ado_spn" {
-  depends_on = [module.subscriptions]
-  provisioner "local-exec" {
-    command = "az login --service-principal --username ${module.globals.spn.ado.client_id} --password ${module.globals.spn.ado.client_secret} --tenant ${module.globals.spn.ado.tenant_id}"
-  }
-}
+# resource "null_resource" "login_ado_spn" {
+#   depends_on = [module.subscriptions]
+#   provisioner "local-exec" {
+#     command = "az login --service-principal --username ${module.globals.spn.ado.client_id} --password ${module.globals.spn.ado.client_secret} --tenant ${module.globals.spn.ado.tenant_id}"
+#   }
+# }
 
 module "identity" {
   source   = "./identity"
