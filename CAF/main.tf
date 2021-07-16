@@ -11,7 +11,7 @@ resource "null_resource" "login_ado_spn" {
   provisioner "local-exec" {
     # command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
     command = "az login --service-principal --username ${(module.globals[var.settings.location].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
-  
+
   }
 }
 
