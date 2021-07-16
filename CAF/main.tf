@@ -3,7 +3,7 @@ module "subscriptions" {
 
   depends_on = [module.globals, module.environment]
 
-  settings = module.globals.eastu2.sub_settings
+  settings = module.globals.eastus2.sub_settings
 }
 
 # resource "null_resource" "login_ado_spn" {
