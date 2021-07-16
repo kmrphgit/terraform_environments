@@ -6,6 +6,6 @@ variable "naming_conventions" {
   default = {}
 }
 
-variable "locations" {
-  default = {}
+variable "location" {
+  default = ""
 }
