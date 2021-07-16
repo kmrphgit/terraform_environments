@@ -1,6 +1,6 @@
 module "networking" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//networking/vnet"
-  for_each = var.settings["eastus2"].resource_group
-
+  for_each = var.settings["eastus2"].vnet
+  location = var.settings.location
   rg_name  = "${var.settings.naming_conventions.resource_group}-${var.settings["eastus2"].resource_group[each.key].iteration}"
 }
