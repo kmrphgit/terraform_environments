@@ -1,11 +1,9 @@
 module "subscriptions" {
-  source = "../../module/subscription/"
+  source = "git::https://github.com/kmrphgit/terraform_modules.git//subscription"
 
   depends_on = [module.globals, module.environment]
 
-  workspace   = var.WORKSPACE
-  environment = var.ENVIRONMENT
-  settings    = module.globals.sub_settings
+  settings = module.globals.sub_settings
 }
 
 resource "null_resource" "login_ado_spn" {
@@ -38,5 +36,5 @@ module "identity" {
 # }
 module "subscription" {
   source = "../"
-  
+
 }

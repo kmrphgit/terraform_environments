@@ -1,6 +1,6 @@
 module "globals" {
-  source   = "../../config/global"
-  for_each = toset(var.identity_settings.locations)
+  source   = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
+  for_each = var.settings
 
   applicationName = var.WORKSPACE
   environment     = var.ENVIRONMENT
