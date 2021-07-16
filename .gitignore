@@ -1,18 +1,16 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
+identity.tfvars
 
-# Other files and folders
-.settings/
+# Terragrunt
+.terragrunt-cache
+prevent_destroy.hcl
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Creds
+provider_info.sh
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+#Notes
+notes.md
