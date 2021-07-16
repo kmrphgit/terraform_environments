@@ -6,7 +6,7 @@
 # }
 
 output "naming_conventions" {
-  value = module.globals[eastus2].spn  #[eastus2].naming_conventions .naming_conventions.region1.naming_conventions
+  value = module.globals[0].spn  #[eastus2].naming_conventions .naming_conventions.region1.naming_conventions
 }
 
 # output "spn" {
