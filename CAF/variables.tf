@@ -16,6 +16,10 @@ variable "settings" {
   default = {}
 }
 
+variable "spn" {
+  default = {}
+}
+
 
 # variable "compute" {
 #   description = "Configuration object - Azure compute resources"
