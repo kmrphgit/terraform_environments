@@ -8,5 +8,5 @@ module "globals" {
 }
 
 module "environment" {
-  source = "../../config/environment"
+  source = "git::https://github.com/kmrphgit/terraform_global_config.git//environment"
 }
