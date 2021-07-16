@@ -5,7 +5,7 @@ module "globals" {
   applicationName = var.WORKSPACE
   environment     = var.ENVIRONMENT
   location        = each.key
-  spn = var.spn
+  spn             = var.spn
 }
 
 module "environment" {
