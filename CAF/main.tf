@@ -17,7 +17,7 @@ resource "null_resource" "login_ado_spn" {
 
 module "identity" {
   source   = "./identity"
-  for_each = toset(var.identity_settings.locations)
+  for_each = var.settings
 
   depends_on = [null_resource.login_ado_spn]
 
