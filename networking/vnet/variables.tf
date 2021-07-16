@@ -5,3 +5,7 @@ variable "rg_name" {
 variable "settings" {
     default = {}
 }
+
+variable "location" {
+    default = ""
+}
