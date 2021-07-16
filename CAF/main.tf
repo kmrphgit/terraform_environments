@@ -15,17 +15,17 @@ resource "null_resource" "login_ado_spn" {
   }
 }
 
-# module "identity" {
-#   source   = "./identity"
-#   for_each = toset(var.identity_settings.locations)
+module "identity" {
+  source   = "./identity"
+  for_each = toset(var.identity_settings.locations)
 
-#   depends_on = [null_resource.login_ado_spn]
+  depends_on = [null_resource.login_ado_spn]
 
-#   settings = merge(var.settings, module.globals.settings)
-#   # location           = module.globals.locations
-#   # naming_conventions = module.globals[each.key]
+  settings = merge(var.settings, module.globals.settings)
+  # location           = module.globals.locations
+  # naming_conventions = module.globals[each.key]
 
-# }
+}
 
 # module "management" {
 #   source = "./management"
