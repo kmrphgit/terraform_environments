@@ -1,7 +1,17 @@
+module "management_groups" {
+  source = "git::https://github.com/kmrphgit/terraform_modules.git//management_group"
+  for_each = var.settings.management_groups
+
+  depends_on = [module.globals, module.environment]
+
+  settings = each.value
+
+}
+
 module "subscriptions" {
   source = "git::https://github.com/kmrphgit/terraform_modules.git//subscription"
 
-  depends_on = [module.globals, module.environment]
+  depends_on = [module.management_groups]
 
   settings = module.globals["eastus2"].sub_settings
 }
