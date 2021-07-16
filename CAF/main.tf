@@ -13,7 +13,7 @@ module "subscriptions" {
   depends_on = [module.management_groups]
   # depends_on = [module.globals, module.environment]
 
-  settings = local.settings.sub_settings
+  settings = module.globals.sub_settings
 }
 
 resource "null_resource" "login_ado_spn" {

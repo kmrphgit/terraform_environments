@@ -6,7 +6,7 @@
 # }
 
 output "settings" {
-  value = merge(var.settings, module.globals["eastus2"].settings)
+  value = local.settings
 }
 
 output "mg_settings" {
