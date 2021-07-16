@@ -13,25 +13,24 @@ module "subscriptions" {
   depends_on = [module.management_groups]
   # depends_on = [module.globals, module.environment]
 
-  settings = module.globals["eastus2"].sub_settings
+  settings = local.settings.sub_settings
 }
 
 resource "null_resource" "login_ado_spn" {
   depends_on = [module.subscriptions]
   provisioner "local-exec" {
     # command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
-    command = "az login --service-principal --username ${(module.globals[var.settings.location].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
+    command = "az login --service-principal --username ${(local.settings.spn.ado.client_id)} --password ${local.settings.spn.ado.client_secret} --tenant ${local.settings.spn.ado.tenant_id}"
 
   }
 }
 
 module "identity" {
   source   = "./identity"
-  for_each = var.settings
 
   depends_on = [null_resource.login_ado_spn]
 
-  settings = merge(var.settings, module.globals["eastus2"].settings)
+  settings = local.settings
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 
