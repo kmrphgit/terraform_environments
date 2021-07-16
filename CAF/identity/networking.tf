@@ -1,6 +1,8 @@
 module "networking" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//networking/vnet"
   for_each = var.settings.vnet
+
+  iteration = each.key
   rg_name = module.rg.rg_name
   settings = var.settings
   # location = var.settings.location
