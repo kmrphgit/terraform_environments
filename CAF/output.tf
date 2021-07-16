@@ -10,5 +10,5 @@ output "naming_conventions" {
 }
 
 output "spn" {
-  value = module.globals.spn
+  value = module.globals.0.spn
 }
