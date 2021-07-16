@@ -21,7 +21,7 @@ module "identity" {
 
   depends_on = [null_resource.login_ado_spn]
 
-  settings = merge(var.settings, module.globals.settings)
+  settings = merge(var.settings, module.globals["eastus2"].settings)
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 

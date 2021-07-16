@@ -5,8 +5,8 @@
 #   value = module.subscriptions.subscription_id
 # }
 
-output "naming_conventions" {
-  value = module.globals["eastus2"].naming_conventions
+output "settings" {
+  value = merge(var.settings, module.globals["eastus2"].settings)
 }
 
 # output "spn" {
