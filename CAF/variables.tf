@@ -8,7 +8,7 @@ variable "ENVIRONMENT" {
   default     = ""
 }
 
-variable "locations" {
+variable "location" {
   default = []
 }
 
