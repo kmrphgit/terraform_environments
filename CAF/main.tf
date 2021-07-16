@@ -3,13 +3,15 @@ module "subscriptions" {
 
   depends_on = [module.globals, module.environment]
 
-  settings = module.globals[var.settings.location].sub_settings
+  settings = module.globals["eastus2"].sub_settings
 }
 
 resource "null_resource" "login_ado_spn" {
   depends_on = [module.subscriptions]
   provisioner "local-exec" {
-    command = "az login --service-principal --username ${module.globals[var.settings.location].spn.ado.client_id} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
+    # command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
+    command = "az login --service-principal --username ${(module.globals[var.settings.location].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
+  
   }
 }
 
