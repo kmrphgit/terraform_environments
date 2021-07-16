@@ -2,6 +2,6 @@ variable "settings" {
   default = {}
 }
 
-variable "iteartion" {
+variable "iteration" {
   default = ""
 }
