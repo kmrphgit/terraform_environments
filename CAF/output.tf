@@ -8,3 +8,7 @@
 output "naming_conventions" {
   value = module.globals #.naming_conventions.region1.naming_conventions
 }
+
+output "spn" {
+  value = module.globals.spn
+}
