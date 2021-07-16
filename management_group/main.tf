@@ -1,5 +1,5 @@
 resource "azurerm_management_group" "platform" {
-  display_name = var.settings.root.name
+  display_name = var.settings.platform.name
 }
 
 resource "azurerm_management_group" "prod" {
