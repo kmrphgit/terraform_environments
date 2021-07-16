@@ -1,9 +1,9 @@
 data "azurerm_billing_mca_account_scope" "sub" {
   count = try(var.settings.subscription_id, null) == null ? 1 : 0
 
-  billing_account_name    = var.settings.billing_account_name
-  billing_profile_name    = var.settings.billing_profile_name
-  invoice_section_name    = var.settings.invoice_section_name
+  billing_account_name = var.settings.billing_account_name
+  billing_profile_name = var.settings.billing_profile_name
+  invoice_section_name = var.settings.invoice_section_name
 }
 
 # resource "azurerm_subscription" "sub" {
