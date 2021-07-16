@@ -1,8 +1,8 @@
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.settings.naming_conventions.vnet}-${var.settings.iteration}"
+  name                = "${var.settings.naming_conventions.vnet}-${var.iteration}"
   location            = var.settings.location
   resource_group_name = var.rg_name
-  address_space       = var.settings.vnet.address_space
+  address_space       = var.settings.vnet[var.iteration].address_space
 #   tags                = local.tags
 
 #   dns_servers = lookup(var.settings.vnet, "dns_servers", null)

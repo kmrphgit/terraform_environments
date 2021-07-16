@@ -6,6 +6,6 @@ variable "settings" {
     default = {}
 }
 
-variable "location" {
-    default = ""
+variable "iteartion" {
+  default = ""
 }
