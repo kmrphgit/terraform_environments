@@ -12,6 +12,10 @@ variable "location" {
   default = []
 }
 
+variable "mg_settings" {
+  default = {}
+}
+
 variable "settings" {
   default = {}
 }
