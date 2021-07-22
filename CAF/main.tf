@@ -36,13 +36,13 @@ module "identity" {
 
 }
 
-# module "management" {
-#   source = "./management"
-#   for_each = toset(var.management_settings.locations)
+module "management" {
+  source = "./management"
+  for_each = toset(var.management_settings.locations)
 
-#   depends_on = [null_resource.login_ado_spn]
+  depends_on = [null_resource.login_ado_spn]
 
-#   settings = var.management_settings
-#   naming_conventions = module.globals[each.key].naming_conventions
+  settings = var.management_settings
+  naming_conventions = module.globals[each.key].naming_conventions
 
-# }
+}
