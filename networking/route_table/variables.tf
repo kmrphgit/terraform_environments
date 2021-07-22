@@ -1,5 +1,5 @@
 variable "rg_name" {
-  default = ""
+    default = ""
 }
 
 variable "settings" {
