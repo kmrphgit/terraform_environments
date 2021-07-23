@@ -1,3 +1,3 @@
 locals {
-    settings = merge(module.globals.settings, var.settings)
+  settings = merge(module.globals.settings, var.settings)
 }

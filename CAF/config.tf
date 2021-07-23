@@ -1,5 +1,5 @@
 module "globals" {
-  source   = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
+  source = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
 
   applicationName = var.WORKSPACE
   environment     = var.ENVIRONMENT

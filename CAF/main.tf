@@ -26,7 +26,7 @@ resource "null_resource" "login_ado_spn" {
 }
 
 module "identity" {
-  source   = "./identity"
+  source = "./identity"
 
   depends_on = [null_resource.login_ado_spn]
 
@@ -37,12 +37,12 @@ module "identity" {
 }
 
 module "management" {
-  source = "./management"
+  source   = "./management"
   for_each = toset(var.management_settings.locations)
 
   depends_on = [null_resource.login_ado_spn]
 
-  settings = var.management_settings
+  settings           = var.management_settings
   naming_conventions = module.globals[each.key].naming_conventions
 
 }

@@ -3,5 +3,5 @@ module "rg" {
   for_each = var.settings.resource_group
 
   iteration = each.key
-  settings = var.settings
+  settings  = var.settings
 }

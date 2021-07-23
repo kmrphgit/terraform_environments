@@ -1,8 +1,8 @@
 module "globals" {
-    source = "../config/global"
+  source = "../config/global"
 }
 
 module "subscription" {
-    source = "../config/subscription"
+  source = "../config/subscription"
 }
 
