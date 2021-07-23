@@ -3,18 +3,18 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.settings.location
   resource_group_name = var.rg_name
   address_space       = var.settings.vnet[var.iteration].address_space
-#   tags                = local.tags
+  #   tags                = local.tags
 
-#   dns_servers = lookup(var.settings.vnet, "dns_servers", null)
+  #   dns_servers = lookup(var.settings.vnet, "dns_servers", null)
 
-#   dynamic "ddos_protection_plan" {
-#     for_each = var.ddos_id != "" ? [1] : []
+  #   dynamic "ddos_protection_plan" {
+  #     for_each = var.ddos_id != "" ? [1] : []
 
-#     content {
-#       id     = var.ddos_id
-#       enable = true
-#     }
-#   }
+  #     content {
+  #       id     = var.ddos_id
+  #       enable = true
+  #     }
+  #   }
 }
 
 module "special_subnets" {

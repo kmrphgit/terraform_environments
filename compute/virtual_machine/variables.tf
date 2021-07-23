@@ -7,6 +7,6 @@ variable "rg_name" {
 }
 
 variable "settings" {
-    default = {}
+  default = {}
 }
 

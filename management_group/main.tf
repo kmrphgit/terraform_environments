@@ -3,12 +3,12 @@ resource "azurerm_management_group" "platform" {
 }
 
 resource "azurerm_management_group" "prod" {
-  display_name = var.settings.prod.name
+  display_name               = var.settings.prod.name
   parent_management_group_id = azurerm_management_group.platform.id
 }
 
 resource "azurerm_management_group" "nonprod" {
-  display_name = var.settings.nonprod.name
+  display_name               = var.settings.nonprod.name
   parent_management_group_id = azurerm_management_group.platform.id
 }
 
