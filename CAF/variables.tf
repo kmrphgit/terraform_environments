@@ -8,7 +8,11 @@ variable "ENVIRONMENT" {
   default     = ""
 }
 
-variable "identity" {
+variable "identity_nonprod" {
+  default = {}
+}
+
+variable "identity_prod" {
   default = {}
 }
 
@@ -20,11 +24,19 @@ variable "management" {
   default = {}
 }
 
-variable "connectivity" {
+variable "connectivity_nonprod" {
   default = {}
 }
 
-variable "devops" {
+variable "connectivity_prod" {
+  default = {}
+}
+
+variable "devops_prod" {
+  default = {}
+}
+
+variable "spn" {
   default = {}
 }
 

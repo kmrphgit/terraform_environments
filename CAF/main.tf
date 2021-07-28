@@ -1,9 +1,9 @@
-resource "null_resource" "mg_workspace" {
-  provisioner "local-exec" {
+#resource "null_resource" "governance_workspace" {
+#  provisioner "local-exec" {
     # command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
-    command = "terraform workspace select management"
-  }
-}
+#    command = "terraform workspace select governance"
+#  }
+#}
 
 # resource "null_resource" "login_mg_spn" {
 #   depends_on = [null_resource.mg_workspace]
@@ -13,12 +13,11 @@ resource "null_resource" "mg_workspace" {
 #   }
 # }
 
-module "management_groups" {
+module "governance" {
   source = "git::https://github.com/kmrphgit/terraform_modules.git//management_group"
+  #depends_on = [module.globals, module.environment, null_resource.mg_workspace]
 
-  depends_on = [module.globals, module.environment, null_resource.mg_workspace]
-
-  settings = var.mg_settings
+  settings = merge(var.governance, var.billing, var.spn.mg)
 
 }
 
@@ -54,7 +53,7 @@ module "identity_nonprod" {
   source   = "./identity"
   for_each = var.identity_nonprod
 
-  depends_on = [module.management_groups]
+  depends_on = [module.governance]
 
   settings = each.value
   # location           = module.globals.locations
@@ -66,7 +65,7 @@ module "identity_prod" {
   source   = "./identity"
   for_each = var.identity_prod
 
-  depends_on = [module.management_groups]
+  depends_on = [module.governance]
 
   settings = each.value
   # location           = module.globals.locations
