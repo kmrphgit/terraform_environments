@@ -6,7 +6,7 @@ resource "null_resource" "workspace" {
 }
 
 module "globals" {
-  source          = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
+  source          = "git::https://github.com/kmrphgit/terraform_global_configs.git//global"
   depends_on      = [null_resource.workspace]
   applicationName = var.WORKSPACE
   environment     = var.ENVIRONMENT
@@ -15,7 +15,7 @@ module "globals" {
 }
 
 module "environment" {
-  source     = "git::https://github.com/kmrphgit/terraform_global_config.git//environment"
+  source     = "git::https://github.com/kmrphgit/terraform_global_configs.git//environment"
   depends_on = [null_resource.workspace]
 }
 
