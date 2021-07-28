@@ -41,6 +41,6 @@ variable "spn" {
 }
 
 variable "billing" {
-  default = {}  
+  default = {}
 }
 

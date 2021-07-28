@@ -13,36 +13,36 @@ identity_nonprod = {
           address_space = ["10.8.0.0/16"]
           specialsubnets = {
             gateway_subnet = {
-              name            = "GatewaySubnet"
-              cidr            = ["10.8.5.0/24"]
-              route_table_key = "special_rt"
+              name             = "GatewaySubnet"
+              address_prefixes = ["10.8.5.0/24"]
+              route_table_key  = "special_rt"
             }
             azure_firewall_subnet = {
-              name = "AzureFirewallSubnet"
-              cidr = ["10.8.6.0/24"]
+              name             = "AzureFirewallSubnet"
+              address_prefixes = ["10.8.6.0/24"]
             }
           }
           subnets = {
             jump_host = {
-              name    = "jump_host"
-              cidr    = ["10.8.1.0/24"]
-              nsg_key = "jump_host"
+              name             = "jump_host"
+              address_prefixes = ["10.8.1.0/24"]
+              nsg_key          = "jump_host"
             }
             web = {
-              name    = "web-layer"
-              cidr    = ["10.8.2.0/24"]
-              nsg_key = "web"
+              name             = "web-layer"
+              address_prefixes = ["10.8.2.0/24"]
+              nsg_key          = "web"
             }
             app = {
-              name    = "app-layer"
-              cidr    = ["10.8.3.0/24"]
-              nsg_key = "app"
+              name             = "app-layer"
+              address_prefixes = ["10.8.3.0/24"]
+              nsg_key          = "app"
             }
             data = {
-              name            = "data-layer"
-              cidr            = ["10.8.4.0/24"]
-              nsg_key         = "data"
-              route_table_key = "no_internet"
+              name             = "data-layer"
+              address_prefixes = ["10.8.4.0/24"]
+              nsg_key          = "data"
+              route_table_key  = "no_internet"
             }
           }
         }
@@ -191,25 +191,25 @@ identity_nonprod = {
             address_space = ["10.9.0.0/16"]
             subnets = {
               jump_host = {
-                name    = "jump_host"
-                cidr    = ["10.9.1.0/24"]
-                nsg_key = "jump_host"
+                name             = "jump_host"
+                address_prefixes = ["10.9.1.0/24"]
+                nsg_key          = "jump_host"
               }
               web = {
-                name    = "web-layer"
-                cidr    = ["10.9.2.0/24"]
-                nsg_key = "web"
+                name             = "web-layer"
+                address_prefixes = ["10.9.2.0/24"]
+                nsg_key          = "web"
               }
               app = {
-                name    = "app-layer"
-                cidr    = ["10.9.3.0/24"]
-                nsg_key = "app"
+                name             = "app-layer"
+                address_prefixes = ["10.9.3.0/24"]
+                nsg_key          = "app"
               }
               data = {
-                name            = "data-layer"
-                cidr            = ["10.9.4.0/24"]
-                nsg_key         = "data"
-                route_table_key = "no_internet"
+                name             = "data-layer"
+                address_prefixes = ["10.9.4.0/24"]
+                nsg_key          = "data"
+                route_table_key  = "no_internet"
               }
             }
           }
