@@ -1,6 +1,6 @@
 #resource "null_resource" "governance_workspace" {
 #  provisioner "local-exec" {
-    # command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
+# command = "az login --service-principal --username ${(module.globals[element(keys(module.globals), 0)].spn.ado.client_id)} --password ${module.globals[var.settings.location].spn.ado.client_secret} --tenant ${module.globals[var.settings.location].spn.ado.tenant_id}"
 #    command = "terraform workspace select governance"
 #  }
 #}
@@ -55,7 +55,7 @@ module "identity_nonprod" {
 
   depends_on = [module.governance]
 
-  settings = each.value
+  settings = merge(each.value, { spn = { ado = var.spn.ado, subs = var.spn.subs } })
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 
@@ -67,7 +67,7 @@ module "identity_prod" {
 
   depends_on = [module.governance]
 
-  settings = each.value
+  settings = merge(each.value, { spn = { ado = var.spn.ado, subs = var.spn.subs } })
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 

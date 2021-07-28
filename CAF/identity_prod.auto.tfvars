@@ -10,37 +10,37 @@ identity_prod = {
     networking = {
       vnets = {
         "001" = {
-          address_space = ["10.1.0.0/16"]
+          address_space = ["10.3.0.0/16"]
           specialsubnets = {
             gateway_subnet = {
               name            = "GatewaySubnet"
-              cidr            = ["10.1.5.0/24"]
+              cidr            = ["10.3.5.0/24"]
               route_table_key = "special_rt"
             }
             azure_firewall_subnet = {
               name = "AzureFirewallSubnet"
-              cidr = ["10.1.6.0/24"]
+              cidr = ["10.3.6.0/24"]
             }
           }
           subnets = {
             jump_host = {
               name    = "jump_host"
-              cidr    = ["10.1.1.0/24"]
+              cidr    = ["10.3.1.0/24"]
               nsg_key = "jump_host"
             }
             web = {
               name    = "web-layer"
-              cidr    = ["10.1.2.0/24"]
+              cidr    = ["10.3.2.0/24"]
               nsg_key = "web"
             }
             app = {
               name    = "app-layer"
-              cidr    = ["10.1.3.0/24"]
+              cidr    = ["10.3.3.0/24"]
               nsg_key = "app"
             }
             data = {
               name            = "data-layer"
-              cidr            = ["10.1.4.0/24"]
+              cidr            = ["10.3.4.0/24"]
               nsg_key         = "data"
               route_table_key = "no_internet"
             }
@@ -117,7 +117,7 @@ identity_prod = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.1.1.0/24"
+              source_address_prefix      = "10.3.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]
@@ -133,7 +133,7 @@ identity_prod = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "8443"
-              source_address_prefix      = "10.2.1.0/24"
+              source_address_prefix      = "10.4.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
             {
@@ -144,7 +144,7 @@ identity_prod = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.1.1.0/24"
+              source_address_prefix      = "10.3.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]
@@ -171,7 +171,7 @@ identity_prod = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.1.1.0/24"
+              source_address_prefix      = "10.3.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]
@@ -188,26 +188,26 @@ identity_prod = {
       networking = {
         vnets = {
           "001" = {
-            address_space = ["10.2.0.0/16"]
+            address_space = ["10.4.0.0/16"]
             subnets = {
               jump_host = {
                 name    = "jump_host"
-                cidr    = ["10.2.1.0/24"]
+                cidr    = ["10.4.1.0/24"]
                 nsg_key = "jump_host"
               }
               web = {
                 name    = "web-layer"
-                cidr    = ["10.2.2.0/24"]
+                cidr    = ["10.4.2.0/24"]
                 nsg_key = "web"
               }
               app = {
                 name    = "app-layer"
-                cidr    = ["10.2.3.0/24"]
+                cidr    = ["10.4.3.0/24"]
                 nsg_key = "app"
               }
               data = {
                 name            = "data-layer"
-                cidr            = ["10.2.4.0/24"]
+                cidr            = ["10.4.4.0/24"]
                 nsg_key         = "data"
                 route_table_key = "no_internet"
               }
@@ -284,7 +284,7 @@ identity_prod = {
                 protocol                   = "tcp"
                 source_port_range          = "*"
                 destination_port_range     = "22"
-                source_address_prefix      = "10.2.1.0/24"
+                source_address_prefix      = "10.4.1.0/24"
                 destination_address_prefix = "VirtualNetwork"
               },
             ]
@@ -299,7 +299,7 @@ identity_prod = {
                 protocol                   = "tcp"
                 source_port_range          = "*"
                 destination_port_range     = "8443"
-                source_address_prefix      = "10.2.1.0/24"
+                source_address_prefix      = "10.4.1.0/24"
                 destination_address_prefix = "VirtualNetwork"
               },
               {
@@ -310,7 +310,7 @@ identity_prod = {
                 protocol                   = "tcp"
                 source_port_range          = "*"
                 destination_port_range     = "22"
-                source_address_prefix      = "10.2.1.0/24"
+                source_address_prefix      = "10.4.1.0/24"
                 destination_address_prefix = "VirtualNetwork"
               },
             ]
@@ -336,7 +336,7 @@ identity_prod = {
                 protocol                   = "tcp"
                 source_port_range          = "*"
                 destination_port_range     = "22"
-                source_address_prefix      = "10.2.1.0/24"
+                source_address_prefix      = "10.4.1.0/24"
                 destination_address_prefix = "VirtualNetwork"
               },
             ]
