@@ -16,7 +16,7 @@ resource "null_resource" "mg_workspace" {
 module "management_groups" {
   source = "git::https://github.com/kmrphgit/terraform_modules.git//management_group"
 
-  depends_on = [module.globals, module.environment, null_resource.login_mg_spn]
+  depends_on = [module.globals, module.environment, null_resource.mg_workspace]
 
   settings = var.mg_settings
 
