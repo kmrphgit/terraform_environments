@@ -1,6 +1,6 @@
 devops = {
   prod_eastus2 = {
-    location = "eastus2"
+    location        = "eastus2"
     applicationName = "devops"
     environment     = "prod"
     resource_group = {

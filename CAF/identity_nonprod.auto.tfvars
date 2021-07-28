@@ -1,6 +1,6 @@
 identity_nonprod = {
   prod_eastus2 = {
-    location = "eastus2"
+    location        = "eastus2"
     applicationName = "identity"
     environment     = "nonprod"
     resource_group = {
@@ -180,7 +180,7 @@ identity_nonprod = {
       }
     }
     prod_centralus = {
-      location = "centralus"
+      location        = "centralus"
       applicationName = "identity"
       environment     = "nonprod"
       resource_group = {
