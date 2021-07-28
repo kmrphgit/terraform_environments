@@ -16,8 +16,8 @@
 module "governance" {
   source = "git::https://github.com/kmrphgit/terraform_modules.git//management_group"
   #depends_on = [module.globals, module.environment, null_resource.mg_workspace]
-
-  settings = merge(var.governance, var.billing, var.spn.mg)
+  for_each = var.governance
+  settings = merge(each.value, var.billing, var.spn.mg)
 
 }
 
