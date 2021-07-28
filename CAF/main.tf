@@ -51,7 +51,7 @@ module "management_groups" {
 # }
 
 module "identity" {
-  source = "./identity"
+  source   = "./identity"
   for_each = var.identity
 
   depends_on = [module.management_groups]

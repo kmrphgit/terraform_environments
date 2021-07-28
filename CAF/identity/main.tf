@@ -24,6 +24,6 @@ resource "null_resource" "login_ado_spn" {
 }
 
 module "naming" {
-    source = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
-    settings = var.settings
+  source   = "git::https://github.com/kmrphgit/terraform_global_config.git//global"
+  settings = var.settings
 }

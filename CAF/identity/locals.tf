@@ -1,3 +1,3 @@
 output "settings" {
-    value = module.naming.settings
+  value = module.naming.settings
 }
