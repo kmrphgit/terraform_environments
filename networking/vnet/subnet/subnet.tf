@@ -1,5 +1,4 @@
 resource "azurerm_subnet" "subnet" {
-
   name                                           = var.settings.name
   resource_group_name                            = var.settings.rg_name
   virtual_network_name                           = var.settings.vnet_name
