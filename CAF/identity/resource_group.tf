@@ -4,5 +4,6 @@ module "rg" {
   for_each   = var.settings.resource_group
 
   iteration = each.key
+  location = var.settings.location
   settings  = merge(module.globals.settings, each.value)
 }
