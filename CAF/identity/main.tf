@@ -10,7 +10,7 @@ module "globals" {
   depends_on = [null_resource.workspace]
   # applicationName = var.WORKSPACE
   # environment     = var.ENVIRONMENT
-  applicationName = var.settings.workspace
+  applicationName = var.settings.applicationName
   environment     = var.settings.environment
   location        = var.settings.location
   settings        = var.settings
