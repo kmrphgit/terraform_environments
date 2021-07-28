@@ -9,9 +9,6 @@ output "settings" {
   value = local.settings
 }
 
-output "mg_settings" {
-  value = module.management_groups
-}
 
 # output "spn" {
 #   value = module.globals[eastus2].spn
