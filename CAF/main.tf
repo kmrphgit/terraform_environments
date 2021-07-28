@@ -50,9 +50,9 @@ module "management_groups" {
 #   }
 # }
 
-module "identity" {
+module "identity_nonprod" {
   source   = "./identity"
-  for_each = var.identity
+  for_each = var.identity_nonprod
 
   depends_on = [module.management_groups]
 
@@ -61,6 +61,19 @@ module "identity" {
   # naming_conventions = module.globals[each.key]
 
 }
+
+module "identity_prod" {
+  source   = "./identity"
+  for_each = var.identity_prod
+
+  depends_on = [module.management_groups]
+
+  settings = each.value
+  # location           = module.globals.locations
+  # naming_conventions = module.globals[each.key]
+
+}
+
 
 # module "management" {
 #   source   = "./management"
