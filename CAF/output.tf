@@ -5,10 +5,6 @@
 #   value = module.subscriptions.subscription_id
 # }
 
-output "settings" {
-  value = var.settings
-}
-
 
 # output "spn" {
 #   value = module.globals[eastus2].spn
