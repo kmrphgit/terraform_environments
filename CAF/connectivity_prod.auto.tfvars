@@ -184,26 +184,26 @@ connectivity = {
     networking = {
       vnets = {
         "001" = {
-          address_space = ["10.2.0.0/16"]
+          address_space = ["10.5.0.0/16"]
           subnets = {
             jump_host = {
               name    = "jump_host"
-              cidr    = ["10.2.1.0/24"]
+              cidr    = ["10.5.1.0/24"]
               nsg_key = "jump_host"
             }
             web = {
               name    = "web-layer"
-              cidr    = ["10.2.2.0/24"]
+              cidr    = ["10.5.2.0/24"]
               nsg_key = "web"
             }
             app = {
               name    = "app-layer"
-              cidr    = ["10.2.3.0/24"]
+              cidr    = ["10.5.3.0/24"]
               nsg_key = "app"
             }
             data = {
               name            = "data-layer"
-              cidr            = ["10.2.4.0/24"]
+              cidr            = ["10.5.4.0/24"]
               nsg_key         = "data"
               route_table_key = "no_internet"
             }
@@ -280,7 +280,7 @@ connectivity = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.2.1.0/24"
+              source_address_prefix      = "10.5.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]
@@ -295,7 +295,7 @@ connectivity = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "8443"
-              source_address_prefix      = "10.2.1.0/24"
+              source_address_prefix      = "10.5.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
             {
@@ -306,7 +306,7 @@ connectivity = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.2.1.0/24"
+              source_address_prefix      = "10.5.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]
@@ -332,7 +332,7 @@ connectivity = {
               protocol                   = "tcp"
               source_port_range          = "*"
               destination_port_range     = "22"
-              source_address_prefix      = "10.2.1.0/24"
+              source_address_prefix      = "10.5.1.0/24"
               destination_address_prefix = "VirtualNetwork"
             },
           ]

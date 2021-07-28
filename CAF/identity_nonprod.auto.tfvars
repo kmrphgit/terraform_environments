@@ -1,4 +1,4 @@
-identity_prod = {
+identity_nonprod = {
   prod_eastus2 = {
     location = "eastus2"
 
