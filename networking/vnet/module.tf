@@ -29,7 +29,7 @@ module "special_subnets" {
   # service_endpoints                              = lookup(each.value, "service_endpoints", [])
   # enforce_private_link_endpoint_network_policies = lookup(each.value, "enforce_private_link_endpoint_network_policies", false)
   # enforce_private_link_service_network_policies  = lookup(each.value, "enforce_private_link_service_network_policies", false)
-  settings = merge({ name = "${var.settings.naming_conventions.subnet}-${each.key}" }, each.value)
+  settings = merge({ name = each.key }, each.value)
 }
 
 module "subnets" {
