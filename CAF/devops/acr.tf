@@ -1,4 +1,4 @@
-module "networking" {
+module "acr" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//compute/acr"
   for_each = var.settings.azure_container_registries
 
