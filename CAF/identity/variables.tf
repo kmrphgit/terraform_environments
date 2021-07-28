@@ -5,3 +5,7 @@ variable "settings" {
 variable "WORKSPACE" {
   default = ""
 }
+
+variable "ENVIRONMENT" {
+  default = ""
+}

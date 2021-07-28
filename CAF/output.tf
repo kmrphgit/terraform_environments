@@ -6,7 +6,7 @@
 # }
 
 output "settings" {
-  value = local.settings
+  value = var.settings
 }
 
 
