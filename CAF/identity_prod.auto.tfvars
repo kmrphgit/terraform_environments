@@ -1,7 +1,8 @@
 identity_prod = {
   prod_eastus2 = {
-    location = "eastus2"
-
+    location        = "eastus2"
+    applicationName = "identity"
+    environment     = "prod"
     resource_group = {
       "001" = {
         # iteration = "001"
@@ -10,7 +11,7 @@ identity_prod = {
     networking = {
       vnets = {
         "001" = {
-          rg_key = "001"
+          rg_key        = "001"
           address_space = ["10.3.0.0/16"]
           specialsubnets = {
             gateway_subnet = {
@@ -180,8 +181,9 @@ identity_prod = {
       }
     }
     prod_centralus = {
-      location = "centralus"
-
+      location        = "centralus"
+      applicationName = "identity"
+      environment     = "prod"
       resource_group = {
         "rg-001" = {}
       }
@@ -189,7 +191,7 @@ identity_prod = {
       networking = {
         vnets = {
           "001" = {
-            rg_key = "001"
+            rg_key        = "001"
             address_space = ["10.4.0.0/16"]
             subnets = {
               jump_host = {
