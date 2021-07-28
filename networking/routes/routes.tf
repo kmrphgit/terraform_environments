@@ -1,6 +1,6 @@
 resource "azurerm_route" "route" {
   name                   = var.settings.route_name
-  resource_group_name    = var.settings.rg_name
+  resource_group_name    = var.rg_name
   route_table_name       = var.settings.route_table_name
   address_prefix         = var.settings.address_prefix
   next_hop_type          = var.settings.next_hop_type

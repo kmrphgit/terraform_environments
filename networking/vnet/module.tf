@@ -20,29 +20,29 @@ resource "azurerm_virtual_network" "vnet" {
 module "special_subnets" {
   source = "./subnet"
 
-  for_each                                       = lookup(var.settings, "specialsubnets", {})
+  for_each = lookup(var.settings, "specialsubnets", {})
   # name                                           = each.value.name
   # global_settings                                = var.global_settings
-  resource_group_name                            = azurerm_virtual_network.vnet.resource_group_name
-  virtual_network_name                           = azurerm_virtual_network.vnet.name
+  rg_name   = vazurerm_virtual_network.vnet.resource_group_name
+  vnet_name = azurerm_virtual_network.vnet.name
   # address_prefixes                               = lookup(each.value, "cidr", [])
   # service_endpoints                              = lookup(each.value, "service_endpoints", [])
   # enforce_private_link_endpoint_network_policies = lookup(each.value, "enforce_private_link_endpoint_network_policies", false)
   # enforce_private_link_service_network_policies  = lookup(each.value, "enforce_private_link_service_network_policies", false)
-  settings                                       = each.value
+  settings = merge({ name = "${var.settings.naming_conventions.subnet}-${each.key}" }, each.value)
 }
 
 module "subnets" {
   source = "./subnet"
 
-  for_each                                       = lookup(var.settings, "subnets", {})
+  for_each = lookup(var.settings, "subnets", {})
   # name                                           = each.value.name
   # global_settings                                = var.global_settings
-  resource_group_name                            = vazurerm_virtual_network.vnet.resource_group_name
-  virtual_network_name                           = azurerm_virtual_network.vnet.name
+  rg_name   = vazurerm_virtual_network.vnet.resource_group_name
+  vnet_name = azurerm_virtual_network.vnet.name
   # address_prefixes                               = lookup(each.value, "cidr", [])
   # service_endpoints                              = lookup(each.value, "service_endpoints", [])
   # enforce_private_link_endpoint_network_policies = lookup(each.value, "enforce_private_link_endpoint_network_policies", false)
   # enforce_private_link_service_network_policies  = lookup(each.value, "enforce_private_link_service_network_policies", false)
-  settings                                       = each.value
+  settings = merge({ name = "${var.settings.naming_conventions.subnet}-${each.key}" }, each.value)
 }

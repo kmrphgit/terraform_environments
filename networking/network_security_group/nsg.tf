@@ -1,11 +1,11 @@
 resource "azurerm_network_security_group" "nsg" {
-  name                = azurecaf_name.nsg.result
+  name                = "${var.settings.naming_conventions.nsg}-${var.iteration}"
   resource_group_name = var.resource_group_name
-  location            = var.location
-  tags                = local.tags
+  location            = var.settings.location
+  #  tags                = local.tags
 
   dynamic "security_rule" {
-    for_each = try(var.settings.nsg, [])
+    for_each = try(var.settings.nsg_definitions, [])
     content {
       name                                       = try(security_rule.value.name, null)
       priority                                   = try(security_rule.value.priority, null)

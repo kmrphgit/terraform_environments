@@ -1,31 +1,45 @@
 data "azurerm_client_config" "current" {}
 
 
-resource "azurerm_key_vault" "key_vault" {
-  name                        = "${upper(var.client_code)}-${upper(var.az_region_code)}-${upper(var.tags.tag-Environment)}-${upper(var.role_code)}-kv"
-  location                    = var.az_region
-  resource_group_name         = var.rsg_name
-  enabled_for_disk_encryption = true
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_enabled         = true
-  purge_protection_enabled    = false
+resource "azurerm_key_vault" "keyvault" {
 
-  sku_name = "standard"
+  name                = "${var.settings.naming_conventions.key_vault}-${var.iteration}"
+  location            = var.settings.location
+  resource_group_name = var.rg_name
+  tenant_id           = var.client_config.tenant_id
+  sku_name            = try(var.settings.sku_name, "standard")
+  #  tags                            = try(merge(var.base_tags, local.tags), {})
+  enabled_for_deployment          = try(var.settings.enabled_for_deployment, false)
+  enabled_for_disk_encryption     = try(var.settings.enabled_for_disk_encryption, false)
+  enabled_for_template_deployment = try(var.settings.enabled_for_template_deployment, false)
+  purge_protection_enabled        = try(var.settings.purge_protection_enabled, false)
+  soft_delete_retention_days      = try(var.settings.soft_delete_retention_days, 7)
+  enable_rbac_authorization       = try(var.settings.enable_rbac_authorization, false)
+  timeouts {
+    delete = "60m"
 
-  tags = var.tags
-}
+  }
 
-resource "azurerm_key_vault_access_policy" "kv_access_policy" {
-  key_vault_id = azurerm_key_vault.key_vault.id
+  dynamic "network_acls" {
+    for_each = lookup(var.settings, "network", null) == null ? [] : [1]
 
-  tenant_id = data.azurerm_client_config.current.tenant_id
-  object_id = data.azurerm_client_config.current.object_id
+    content {
+      bypass         = var.settings.network.bypass
+      default_action = try(var.settings.network.default_action, "Deny")
+      ip_rules       = try(var.settings.network.ip_rules, null)
+      virtual_network_subnet_ids = try(var.settings.network.subnets, null) == null ? null : [
+        for key, value in var.settings.network.subnets : try(var.vnets[var.client_config.landingzone_key][value.vnet_key].subnets[value.subnet_key].id, var.vnets[value.lz_key][value.vnet_key].subnets[value.subnet_key].id)
+      ]
+    }
+  }
 
-  key_permissions = [
-    "get",
-  ]
+  dynamic "contact" {
+    for_each = lookup(var.settings, "contacts", {})
 
-  secret_permissions = [
-    "get",
-  ]
+    content {
+      email = contact.value.email
+      name  = try(contact.value.name, null)
+      phone = try(contact.value.phone, null)
+    }
+  }
 }

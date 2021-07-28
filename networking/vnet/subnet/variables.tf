@@ -10,3 +10,7 @@ variable "settings" {
   default = {}
 }
 
+variable "vnet_name" {
+  default = ""
+}
+

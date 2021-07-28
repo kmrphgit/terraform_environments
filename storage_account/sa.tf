@@ -1,7 +1,6 @@
 resource "azurerm_storage_account" "stg" {
-  name                      = azurecaf_name.stg.result
-  resource_group_name       = var.resource_group_name
-  location                  = var.location
+  name                      = "${var.settings.naming_conventions.storage_account}-${var.iteration}"
+  location                  = var.settings.location
   account_tier              = try(var.settings.account_tier, "Standard")
   account_replication_type  = try(var.settings.account_replication_type, "LRS")
   account_kind              = try(var.settings.account_kind, "StorageV2")
@@ -13,7 +12,7 @@ resource "azurerm_storage_account" "stg" {
   is_hns_enabled           = try(var.settings.is_hns_enabled, false)
   nfsv3_enabled            = try(var.settings.nfsv3_enabled, false)
   large_file_share_enabled = try(var.settings.large_file_share_enabled, null)
-  tags                     = merge(var.base_tags, local.tags)
+  #  tags                     = merge(var.base_tags, local.tags)
 
 
   dynamic "custom_domain" {
