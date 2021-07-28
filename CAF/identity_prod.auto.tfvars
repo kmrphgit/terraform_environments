@@ -3,7 +3,7 @@ identity_prod = {
     location = "eastus2"
 
     resource_group = {
-      "rg-001" = {
+      "001" = {
         # iteration = "001"
       }
     }
