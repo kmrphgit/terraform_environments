@@ -3,7 +3,7 @@ identity_prod = {
     location = "eastus2"
 
     resource_group = {
-      "001" = {
+      "rg-001" = {
         # iteration = "001"
       }
     }
@@ -182,7 +182,7 @@ identity_prod = {
       location = "centralus"
 
       resource_group = {
-        "001" = {}
+        "rg-001" = {}
       }
 
       networking = {
