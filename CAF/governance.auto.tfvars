@@ -1,4 +1,6 @@
 governance = {
+  applicationName = "governance"
+  environment     = "prod"
   mg_settings = {
     platform = {
       name = "platform"
