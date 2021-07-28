@@ -11,7 +11,7 @@ module "globals" {
   applicationName = var.WORKSPACE
   environment     = var.ENVIRONMENT
   location        = var.settings.location
-  spn             = var.settings.spn
+  # spn             = var.settings.spn
 }
 
 module "environment" {
