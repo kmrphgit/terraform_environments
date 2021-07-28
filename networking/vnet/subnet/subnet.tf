@@ -1,6 +1,6 @@
 resource "azurerm_subnet" "subnet" {
 
-  name                                           = azurecaf_name.subnet.result
+  name                                           = var.settings.name
   resource_group_name                            = var.settings.rg_name
   virtual_network_name                           = var.settings.vnet_name
   address_prefixes                               = var.settings.address_prefixes

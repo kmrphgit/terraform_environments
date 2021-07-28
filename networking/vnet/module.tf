@@ -23,7 +23,7 @@ module "special_subnets" {
   for_each = lookup(var.settings, "specialsubnets", {})
   # name                                           = each.value.name
   # global_settings                                = var.global_settings
-  rg_name   = vazurerm_virtual_network.vnet.resource_group_name
+  rg_name   = azurerm_virtual_network.vnet.resource_group_name
   vnet_name = azurerm_virtual_network.vnet.name
   # address_prefixes                               = lookup(each.value, "cidr", [])
   # service_endpoints                              = lookup(each.value, "service_endpoints", [])
