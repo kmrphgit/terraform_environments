@@ -55,7 +55,7 @@ module "identity_nonprod" {
 
   depends_on = [module.governance]
 
-  settings = merge(each.value, { spn = { ado = var.spn.ado, subs = var.spn.subs } })
+  settings = merge(each.value, var.billing, var.spn)
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 
@@ -67,7 +67,7 @@ module "identity_prod" {
 
   depends_on = [module.governance]
 
-  settings = merge(each.value, { spn = { ado = var.spn.ado, subs = var.spn.subs } })
+  settings = merge(each.value, var.billing, var.spn)
   # location           = module.globals.locations
   # naming_conventions = module.globals[each.key]
 
