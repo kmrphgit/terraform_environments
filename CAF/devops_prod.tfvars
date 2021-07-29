@@ -186,18 +186,9 @@ devops = {
         }
 
         private_links = {
-          hub_rg1-jumphost = {
-            name               = "acr-test-private-link"
-            resource_group_key = "vnet_region1"
-            vnet_key           = "hub_rg1"
-            subnet_key         = "jumphost"
-            private_service_connection = {
-              name                 = "acr-test-private-link-psc"
-              is_manual_connection = false
-            }
-          }
+          subnet_key           = "acr"
+          is_manual_connection = false
         }
-        
 
         # you can setup up to 5 key
         diagnostic_profiles = {
