@@ -15,5 +15,5 @@
 # }
 
 output "var_settings" {
-  value = var.identity
+  value = merge({ location = var.settings.location }, var.settings)
 }

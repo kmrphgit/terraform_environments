@@ -5,6 +5,4 @@ module "networking" {
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
   settings  = merge(module.globals.settings, each.value)
-  location  = var.settings.location
-  # rg_name  = "${var.settings.naming_conventions.resource_group}-${var.settings["eastus2"].resource_group[each.key].iteration}"
 }

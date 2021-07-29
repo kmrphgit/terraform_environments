@@ -12,36 +12,37 @@ devops_prod = {
       vnets = {
         "001" = {
           address_space = ["10.5.0.0/16"]
+          rg_key        = "001"
           specialsubnets = {
             gateway_subnet = {
-              name            = "GatewaySubnet"
-              cidr            = ["10.5.5.0/24"]
-              route_table_key = "special_rt"
+              name             = "GatewaySubnet"
+              address_prefixes = ["10.5.5.0/24"]
+              route_table_key  = "special_rt"
             }
             # azure_firewall_subnet = {
             #   name = "AzureFirewallSubnet"
-            #   cidr = ["10.5.6.0/24"]
+            #   address_prefixes = ["10.5.6.0/24"]
             # }
           }
           subnets = {
             jump_host = {
-              name    = "jump_host"
-              cidr    = ["10.5.1.0/24"]
-              nsg_key = "jump_host"
+              name             = "jump_host"
+              address_prefixes = ["10.5.1.0/24"]
+              nsg_key          = "jump_host"
             }
             aks = {
-              name    = "aks"
-              cidr    = ["10.5.2.0/24"]
-              nsg_key = "aks"
+              name             = "aks"
+              address_prefixes = ["10.5.2.0/24"]
+              nsg_key          = "aks"
             }
             acr = {
-              name    = "acr-layer"
-              cidr    = ["10.5.3.0/24"]
-              nsg_key = "acr"
+              name             = "acr"
+              address_prefixes = ["10.5.3.0/24"]
+              nsg_key          = "acr"
             }
             # data = {
             #   name            = "data-layer"
-            #   cidr            = ["10.5.4.0/24"]
+            #   address_prefixes            = ["10.5.4.0/24"]
             #   nsg_key         = "data"
             #   route_table_key = "no_internet"
             # }
@@ -185,9 +186,11 @@ devops_prod = {
           }
         }
 
-        private_links = {
-          subnet_key           = "acr"
-          is_manual_connection = false
+        private_endpoints = {
+          endpoint = {
+            subnet_key           = "acr"
+            is_manual_connection = false
+          }
         }
 
         # you can setup up to 5 key

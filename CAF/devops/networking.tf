@@ -5,7 +5,6 @@ module "networking" {
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
   settings  = merge(module.globals.settings, each.value)
-  location  = var.settings.location
 }
 
 output "networking" {

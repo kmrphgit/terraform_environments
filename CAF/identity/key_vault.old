@@ -1,8 +1,0 @@
-module "key_vault" {
-  source = "../../../modules/key_vault"
-  depends_on = [module.resource_group]
-  
-  key_vault_settings = {
-      name = module.environment.key_vault_sku
-  }
-}

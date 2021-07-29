@@ -5,5 +5,4 @@ module "acr" {
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
   settings  = merge(module.globals.settings, module.networking, module.private_dns, each.value)
-  location  = var.settings.location
 }
