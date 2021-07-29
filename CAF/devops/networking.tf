@@ -7,3 +7,7 @@ module "networking" {
   settings  = merge(module.globals.settings, each.value)
   location  = var.settings.location
 }
+
+output "networking" {
+  value = module.networking
+}
