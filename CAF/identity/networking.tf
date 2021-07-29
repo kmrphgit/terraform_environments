@@ -6,3 +6,7 @@ module "networking" {
   iteration = each.key
   settings  = merge(module.globals.settings, each.value)
 }
+
+output "networking" {
+  value = module.networking
+}
