@@ -186,7 +186,7 @@ identity_prod = {
     applicationName = "identity"
     environment     = "prod"
     resource_group = {
-      "rg-001" = {}
+      "001" = {}
     }
 
     networking = {
