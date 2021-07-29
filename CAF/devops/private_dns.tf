@@ -9,5 +9,5 @@ module "private_dns" {
 }
 
 output "private_dns" {
-  value = module.prviate_dns
+  value = module.private_dns
 }
