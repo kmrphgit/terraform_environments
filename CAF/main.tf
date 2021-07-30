@@ -19,9 +19,9 @@ module "identity_prod" {
   settings   = merge(each.value, var.billing, var.spn)
 }
 
-# module "devops_prod" {
-#   source     = "./devops"
-#   for_each   = var.devops_prod
-#   depends_on = [module.governance]
-#   settings   = merge(each.value, var.billing, var.spn)
-# }
+module "devops_prod" {
+  source     = "./devops"
+  for_each   = var.devops_prod
+  depends_on = [module.governance]
+  settings   = merge(each.value, var.billing, var.spn)
+}

@@ -31,6 +31,22 @@ locals {
 
 
   settings = merge(local.location, local.naming_conventions, local.applicationName)
+  # flatten_naming_conventions = flatten(local.naming_conventions)
+
+  # network_subnets = flatten([
+  #   for network_key, network in var.networks : [
+  #     for subnet_key, subnet in network.subnets : {
+  #       network_key = network_key
+  #       subnet_key  = subnet_key
+  #       network_id  = aws_vpc.example[network_key].id
+  #       cidr_block  = subnet.cidr_block
+  #     }
+  #   ]
+  # ])
+
+  # subnets = for_each = {
+
+  # }
 
 }
 
@@ -41,8 +57,8 @@ module "globals" {
   applicationName = "devops"
   environment     = "eastus2"
   location        = var.settings.location
-  settings        = merge(var.settings, var.spn)
-  
+  settings        = merge(var.settings, var.spn, var.billing)
+
 }
 
 
@@ -61,4 +77,3 @@ module "networking" {
 output "networking" {
   value = module.networking
 }
-

@@ -17,3 +17,12 @@
 output "var_settings" {
   value = merge({ location = var.settings.location }, var.settings)
 }
+
+# output "naming_conventions" {
+#   value = local.flatten_naming_conventions.resource_group
+# }
+
+
+# output "network_subnets" {
+#   value = local.network_subnets
+# }

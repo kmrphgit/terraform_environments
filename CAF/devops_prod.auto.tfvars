@@ -170,6 +170,7 @@ devops_prod = {
       "001" = {
         name   = "acr-test"
         rg_key = "001"
+        vnet_key = "001"
         sku    = "Premium"
         georeplications = {
           region2 = {
