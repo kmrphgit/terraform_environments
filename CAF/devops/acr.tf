@@ -6,3 +6,7 @@ module "acr" {
   iteration = each.key
   settings  = merge(module.globals.settings, module.networking[each.value.vnet_key], module.private_dns, each.value)
 }
+
+output "acr" {
+  value = module.acr
+}
