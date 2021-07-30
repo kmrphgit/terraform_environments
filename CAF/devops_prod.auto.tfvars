@@ -208,6 +208,7 @@ devops_prod = {
     aks_clusters = {
       "001" = {
         rg_key   = "001"
+        subnet_key = "aks"
         vnet_key = "001"
         os_type  = "Linux"
 
@@ -226,6 +227,14 @@ devops_prod = {
         network_policy = {
           network_plugin    = "azure"
           load_balancer_sku = "Standard"
+        }
+
+        ingress_application_gateway = {
+          enabled = true
+          gateway_id = ""
+          gateway_name = ""
+          subnet_cidr = ""
+          subnet_id = ""
         }
 
         private_cluster_enabled = true

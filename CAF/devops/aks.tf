@@ -6,9 +6,8 @@ module "aks" {
   iteration = each.key
   settings = merge(
     module.globals.settings,
-    module.networking[each.vaule.vnet_key],
-    module.acr[each.vaule.vnet_key],
+    module.networking[each.value.vnet_key],
+    module.acr[each.value.vnet_key],
     each.value
   )
-  location = var.settings.location
 }
