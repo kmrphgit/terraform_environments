@@ -1,4 +1,4 @@
-devops_prod = {
+settings= {
   prod_eastus2 = {
     location        = "eastus2"
     applicationName = "devops"
