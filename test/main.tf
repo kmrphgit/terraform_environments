@@ -62,18 +62,49 @@ module "globals" {
 }
 
 
-module "networking" {
-  source   = "git::https://github.com/kmrphgit/terraform_modules.git//networking/vnet"
-  for_each = var.settings.networking.vnets
-  depends_on = [
-    module.globals
-  ]
+# module "networking" {
+#   source   = "git::https://github.com/kmrphgit/terraform_modules.git//networking/vnet"
+#   for_each = var.settings.networking.vnets
+#   depends_on = [
+#     module.globals
+#   ]
 
-  rg_name   = "rg_name"
-  iteration = each.key
-  settings  = merge(module.globals.settings, each.value)
+#   rg_name   = "rg_name"
+#   iteration = each.key
+#   settings  = merge(module.globals.settings, each.value)
+# }
+
+# output "networking" {
+#   value = module.networking
+# }
+
+module "mssql_server" {
+  source   = "git::https://github.com/kmrphgit/terraform_modules.git//databases/mssql_server"
+  for_each = var.settings.mssql_server
+  # iteration = each.key
+  settings = merge(
+    { location = var.settings.location },
+    { iteration = each.key },
+    { rg_name = "rg_name" },
+    each.value
+  )
 }
 
-output "networking" {
-  value = module.networking
+output "mssql_server" {
+  value = module.mssql_server
+}
+
+module "mssql_database" {
+  source   = "git::https://github.com/kmrphgit/terraform_modules.git//databases/mssql_database"
+  for_each = var.settings.mssql_database
+  # iteration = each.key
+  settings = merge(
+    { server_id = module.mssql_server[each.value.server_key].id },
+    { iteration = each.key },
+    each.value
+  )
+}
+
+output "mssql_database" {
+  value = module.mssql_database
 }

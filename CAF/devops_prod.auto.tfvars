@@ -1,4 +1,4 @@
-settings= {
+devops_prod = {
   prod_eastus2 = {
     location        = "eastus2"
     applicationName = "devops"
@@ -207,17 +207,23 @@ settings= {
     }
     aks_clusters = {
       "001" = {
-        rg_key   = "001"
+        rg_key     = "001"
         subnet_key = "aks"
-        vnet_key = "001"
-        os_type  = "Linux"
+        vnet_key   = "001"
+        os_type    = "Linux"
 
-        diagnostic_profiles = {
-          operations = {
-            name             = "aksoperations"
-            definition_key   = "azure_kubernetes_cluster"
-            destination_type = "log_analytics"
-            destination_key  = "central_logs"
+        diagnostics = {
+          diagnostic_profiles = {
+            operations = {
+              name             = "aksoperations"
+              definition_key   = "azure_kubernetes_cluster"
+              destination_type = "log_analytics"
+              destination_key  = "central_logs"
+            }
+          }
+          log_analytics = {
+            name    = "lga-001"
+            rg_name = "rg-001"
           }
         }
         identity = {
@@ -230,11 +236,11 @@ settings= {
         }
 
         ingress_application_gateway = {
-          enabled = true
-          gateway_id = ""
+          enabled      = true
+          gateway_id   = ""
           gateway_name = ""
-          subnet_cidr = ""
-          subnet_id = ""
+          subnet_cidr  = ""
+          subnet_id    = ""
         }
 
         private_cluster_enabled = true
@@ -279,6 +285,112 @@ settings= {
             # tags = {
             #   "project" = "user services"
             # }
+          }
+        }
+
+      }
+    }
+    event_hub_namespaces = {
+      evh1 = {
+        rg_key = "001"
+        sku    = "Standard"
+        private_endpoints = {
+          # Require enforce_private_link_endpoint_network_policies set to true on the subnet
+          private-link = {
+            name               = "sales-evh-rg1"
+            vnet_key           = "vnet_region1"
+            subnet_key         = "evh_subnet"
+            resource_group_key = "evh_examples"
+
+            private_service_connection = {
+              name                 = "sales-evh-rg1"
+              is_manual_connection = false
+              subresource_names    = ["namespace"]
+            }
+          }
+        }
+      }
+    }
+    recovery_vaults = {
+      asr1 = {
+        rg_key     = "001"
+        vnet_key   = "001"
+        subnet_key = "asr"
+
+        soft_delete_enabled = false
+
+        diagnostics = {
+          diagnostic_profiles = {
+            operations = {
+              name             = "asroperations"
+              definition_key   = "azure_site_recovery"
+              destination_type = "log_analytics"
+              destination_key  = "central_logs"
+            }
+          }
+          log_analytics = {
+            name    = "lga-001"
+            rg_name = "rg-001"
+          }
+        }
+
+        replication_policies = {
+          repl1 = {
+            name               = "policy1"
+            resource_group_key = "001"
+
+            recovery_point_retention_in_minutes                  = 24 * 60
+            application_consistent_snapshot_frequency_in_minutes = 4 * 60
+          }
+        }
+        backup_policies = {
+          vms = {
+            policy1 = {
+              name      = "VMBackupPolicy1"
+              vault_key = "001"
+              rg_key    = "001"
+              timezone  = "UTC"
+              backup = {
+                frequency = "Daily"
+                time      = "23:00"
+                #if not desired daily, can pick weekdays as below:
+                #weekdays  = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+              }
+              retention_daily = {
+                count = 10
+              }
+              retention_weekly = {
+                count    = 42
+                weekdays = ["Sunday", "Wednesday", "Friday", "Saturday"]
+              }
+              retention_monthly = {
+                count    = 7
+                weekdays = ["Sunday", "Wednesday"]
+                weeks    = ["First", "Last"]
+              }
+              retention_yearly = {
+                count    = 77
+                weekdays = ["Sunday"]
+                weeks    = ["Last"]
+                months   = ["January"]
+              }
+            }
+          }
+
+          fs = {
+            policy1 = {
+              name      = "FSBackupPolicy1"
+              vault_key = "001"
+              rg_key    = "001"
+              timezone  = "UTC"
+              backup = {
+                frequency = "Daily"
+                time      = "23:00"
+              }
+              retention_daily = {
+                count = 10
+              }
+            }
           }
         }
 

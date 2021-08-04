@@ -202,4 +202,24 @@ settings = {
       }
     }
   }
+  mssql_server = {
+    "001" = {
+      name                = "sql-rg1"
+      resource_group_key  = "sql_region1"
+      administrator_login = "sqladmin"
+      subnet = {
+        # subnet_name  = "mssql"
+        # vnet_name    = "vnet-001"
+        # vnet_rg_name = "rg-001"
+      }
+
+    }
+  }
+  mssql_database = {
+    "001" = {
+      resource_group_key = "sql_region1"
+      server_key         = "001"
+      name               = "salesdb1rg1"
+    }
+  }
 }
