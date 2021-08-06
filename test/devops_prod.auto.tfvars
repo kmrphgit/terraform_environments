@@ -223,3 +223,99 @@ settings = {
     }
   }
 }
+
+virtual_machines1 = {
+
+  # Configuration to deploy a bastion host linux virtual machine
+  "001" = {
+    rg_key             = "001"
+    provision_vm_agent = true
+    # when boot_diagnostics_storage_account_key is empty string "", boot diagnostics will be put on azure managed storage
+    # when boot_diagnostics_storage_account_key is a non-empty string, it needs to point to the key of a user managed storage defined in diagnostic_storage_accounts
+    # if boot_diagnostics_storage_account_key is not defined, but global_settings.resource_defaults.virtual_machines.use_azmanaged_storage_for_boot_diagnostics is true, boot diagnostics will be put on azure managed storage
+    boot_diagnostics_storage_account_key = "001"
+
+    os_type = "linux"
+
+    # the auto-generated ssh key in keyvault secret. Secret name being {VM name}-ssh-public and {VM name}-ssh-private
+    keyvault_key = "001"
+
+    # Define the number of networking cards to attach the virtual machine
+    networking_interfaces = {
+      nic0 = {
+        # Value of the keys from networking.tfvars
+        #vnet_key                = "001"
+        #subnet_key              = "vault"
+        primary                 = true
+        name                    = "0"
+        enable_ip_forwarding    = false
+        internal_dns_name_label = "nic0"
+        #public_ip_address_key   = "example_vm_pip1_rg1"
+        # example with external network objects
+        # subnet_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/virtualNetworks/vnet/subnets/default"
+        # public_address_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/publicIPAddresses/arnaudip"
+        # nsg_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/networkSecurityGroups/nsgtest"
+
+      }
+    }
+
+    virtual_machine_settings = {
+      linux = {
+        size                            = "Standard_F2"
+        admin_username                  = "adminuser"
+        disable_password_authentication = true
+
+        #custom_data                     = "scripts/cloud-init/install-rover-tools.config"
+        #custom_data = "compute/virtual_machine/100-single-linux-vm/scripts/cloud-init/install-rover-tools.config"
+
+        # Spot VM to save money
+        #priority        = "Spot"
+        #eviction_policy = "Deallocate"
+
+        # Value of the nic keys to attach the VM. The first one in the list is the default nic
+        network_interface_keys = ["nic0"]
+
+        os_disk = {
+          name                    = "example_vm1-os"
+          caching                 = "ReadWrite"
+          storage_account_type    = "Standard_LRS"
+          disk_encryption_set_key = "set1"
+        }
+        identity = {
+          type = "SystemAssigned"
+        }
+        source_image_reference = {
+          publisher = "Canonical"
+          offer     = "UbuntuServer"
+          sku       = "18.04-LTS"
+          version   = "latest"
+        }
+
+      }
+    }
+    data_disks = {
+      data1 = {
+        name                 = "server1-data1"
+        storage_account_type = "Standard_LRS"
+        # Only Empty is supported. More community contributions required to cover other scenarios
+        create_option           = "Empty"
+        disk_size_gb            = "10"
+        lun                     = 1
+        zones                   = ["1"]
+        disk_encryption_set_key = "set1"
+      }
+    }
+  }
+}
+
+virtual_machines2 = {
+  #"001" = {
+    #networking_interfaces = {
+      nic0 = {
+        # Value of the keys from networking.tfvars
+        vnet_key   = "001"
+        subnet_key = "vault"
+      }
+    #}
+  #}
+}

@@ -37,3 +37,10 @@ variable "billing" {
 #     }
 #   }
 # }
+variable "virtual_machines1" {
+  default = {}
+}
+
+variable "virtual_machines2" {
+  default = {}
+}

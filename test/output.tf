@@ -26,3 +26,7 @@ output "var_settings" {
 # output "network_subnets" {
 #   value = local.network_subnets
 # }
+
+output "virtual_machines" {
+  value = merge(var.virtual_machines2.nic0, var.virtual_machines1["001"].networking_interfaces.nic0)
+}
