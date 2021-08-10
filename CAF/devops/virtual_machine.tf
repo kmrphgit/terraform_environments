@@ -8,6 +8,9 @@ module "virtual_machines" {
     module.globals.settings,
     module.networking[each.value.vnet_key],
     module.arv[each.value.arv_key],
+    {keyvaults = var.settings.keyvaults},
+    {keyvault_keys = var.settings.keyvault_keys},
+    {disk_encryption_sets = var.settings.disk_encryption_sets},
     each.value
   )
 }

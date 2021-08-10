@@ -406,6 +406,7 @@ devops_prod = {
       # Configuration to deploy a bastion host linux virtual machine
       "001" = {
         rg_key             = "001"
+        vnet_key           = "001"
         arv_key            = "001"
         provision_vm_agent = true
         # when boot_diagnostics_storage_account_key is empty string "", boot diagnostics will be put on azure managed storage
@@ -422,7 +423,6 @@ devops_prod = {
         networking_interfaces = {
           nic0 = {
             # Value of the keys from networking.tfvars
-            vnet_key                = "001"
             subnet_key              = "vault"
             primary                 = true
             name                    = "0"
@@ -487,9 +487,9 @@ devops_prod = {
           log_analytics = false
           event_hub     = true
         }
+
       }
     }
-
 
     # diagnostic_storage_accounts = {
     #   # Stores boot diagnostic for region1
@@ -503,12 +503,9 @@ devops_prod = {
     #   }
     # }
 
-
-
     keyvaults = {
-      example_vm_rg1 = {
-        name                        = "vmlinuxakv"
-        resource_group_key          = "vm_region1"
+      "001" = {
+        rg_key                      = "001"
         sku_name                    = "standard"
         soft_delete_enabled         = true
         purge_protection_enabled    = true
@@ -527,8 +524,8 @@ devops_prod = {
 
     keyvault_keys = {
       key1 = {
-        keyvault_key       = "example_vm_rg1"
-        resource_group_key = "vm_region1"
+        keyvault_key       = "001"
+        resource_group_key = "001"
         name               = "disk-key"
         key_type           = "RSA"
         key_size           = "2048"
@@ -539,7 +536,7 @@ devops_prod = {
     disk_encryption_sets = {
       set1 = {
         name               = "deskey1"
-        resource_group_key = "vm_region1"
+        resource_group_key = "001"
         key_vault_key_key  = "key1"
         keyvault = {
           key = "example_vm_rg1"
