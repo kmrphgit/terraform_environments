@@ -3,8 +3,11 @@ module "networking" {
   for_each = var.settings.networking.vnets
 
   rg_name   = module.rg[each.value.rg_key].rg_name
-  iteration = each.key                                   #"001"
-  settings  = merge(module.globals.settings, each.value) # = { ... }
+  iteration = each.key                                  
+  settings  = merge(
+    module.globals.settings, 
+    each.value
+  )
 }
 
 output "networking" {

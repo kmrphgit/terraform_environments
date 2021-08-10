@@ -4,7 +4,10 @@ module "rg" {
   for_each   = var.settings.resource_group
 
   iteration = each.key
-  settings  = merge(module.globals.settings, each.value)
+  settings  = merge(
+    module.globals.settings, 
+    each.value
+  )
 }
 
 output "rg" {

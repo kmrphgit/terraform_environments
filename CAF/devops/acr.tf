@@ -4,7 +4,11 @@ module "acr" {
 
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
-  settings  = merge(module.globals.settings, module.networking[each.value.vnet_key], module.private_dns, each.value)
+  settings  = merge(
+    module.globals.settings,
+    module.networking[each.value.vnet_key],
+    module.private_dns, each.value
+  )
 }
 
 output "acr" {

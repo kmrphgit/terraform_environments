@@ -19,38 +19,24 @@ devops_prod = {
               address_prefixes = ["10.5.5.0/24"]
               route_table_key  = "special_rt"
             }
-            # azure_firewall_subnet = {
-            #   name = "AzureFirewallSubnet"
-            #   address_prefixes = ["10.5.6.0/24"]
-            # }
           }
           subnets = {
             arv = {
-              name             = "arv"
               address_prefixes = ["10.5.1.0/24"]
               nsg_key          = "arv"
             }
             aks = {
-              name             = "aks"
               address_prefixes = ["10.5.2.0/24"]
               nsg_key          = "aks"
             }
             acr = {
-              name             = "acr"
               address_prefixes = ["10.5.3.0/24"]
               nsg_key          = "acr"
             }
             vault = {
-              name             = "vault"
               address_prefixes = ["10.5.4.0/24"]
               nsg_key          = "vault"
             }
-            # data = {
-            #   name            = "data-layer"
-            #   address_prefixes            = ["10.5.4.0/24"]
-            #   nsg_key         = "data"
-            #   route_table_key = "no_internet"
-            # }
           }
         }
       }
@@ -402,8 +388,6 @@ devops_prod = {
       }
     }
     virtual_machines = {
-
-      # Configuration to deploy a bastion host linux virtual machine
       "001" = {
         rg_key             = "001"
         vnet_key           = "001"
@@ -428,12 +412,6 @@ devops_prod = {
             name                    = "0"
             enable_ip_forwarding    = false
             internal_dns_name_label = "nic0"
-            #public_ip_address_key   = "example_vm_pip1_rg1"
-            # example with external network objects
-            # subnet_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/virtualNetworks/vnet/subnets/default"
-            # public_address_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/publicIPAddresses/arnaudip"
-            # nsg_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/networkSecurityGroups/nsgtest"
-
           }
         }
 
@@ -538,9 +516,7 @@ devops_prod = {
         name               = "deskey1"
         resource_group_key = "001"
         key_vault_key_key  = "key1"
-        keyvault = {
-          key = "example_vm_rg1"
-        }
+        keyvault_key = "001"
       }
     }
   }
