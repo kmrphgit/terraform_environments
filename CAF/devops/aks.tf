@@ -11,3 +11,7 @@ module "aks" {
     each.value
   )
 }
+
+output "aks" {
+  value = module.aks
+}

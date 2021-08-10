@@ -25,10 +25,10 @@ devops_prod = {
             # }
           }
           subnets = {
-            jump_host = {
-              name             = "jump_host"
+            arv = {
+              name             = "arv"
               address_prefixes = ["10.5.1.0/24"]
-              nsg_key          = "jump_host"
+              nsg_key          = "arv"
             }
             aks = {
               name             = "aks"
@@ -39,6 +39,11 @@ devops_prod = {
               name             = "acr"
               address_prefixes = ["10.5.3.0/24"]
               nsg_key          = "acr"
+            }
+            vault = {
+              name             = "vault"
+              address_prefixes = ["10.5.4.0/24"]
+              nsg_key          = "vault"
             }
             # data = {
             #   name            = "data-layer"
@@ -312,10 +317,10 @@ devops_prod = {
       }
     }
     recovery_vaults = {
-      asr1 = {
+      "001" = {
         rg_key     = "001"
         vnet_key   = "001"
-        subnet_key = "asr"
+        subnet_key = "arv"
 
         soft_delete_enabled = false
 
@@ -400,7 +405,8 @@ devops_prod = {
 
       # Configuration to deploy a bastion host linux virtual machine
       "001" = {
-        rg_key = "001"
+        rg_key             = "001"
+        arv_key            = "001"
         provision_vm_agent = true
         # when boot_diagnostics_storage_account_key is empty string "", boot diagnostics will be put on azure managed storage
         # when boot_diagnostics_storage_account_key is a non-empty string, it needs to point to the key of a user managed storage defined in diagnostic_storage_accounts
@@ -477,21 +483,25 @@ devops_prod = {
             disk_encryption_set_key = "set1"
           }
         }
+        send_diagnostics = {
+          log_analytics = false
+          event_hub     = true
+        }
       }
     }
 
 
-    diagnostic_storage_accounts = {
-      # Stores boot diagnostic for region1
-      bootdiag_region1 = {
-        name                     = "bootrg1"
-        resource_group_key       = "vm_region1"
-        account_kind             = "StorageV2"
-        account_tier             = "Standard"
-        account_replication_type = "LRS"
-        access_tier              = "Cool"
-      }
-    }
+    # diagnostic_storage_accounts = {
+    #   # Stores boot diagnostic for region1
+    #   bootdiag_region1 = {
+    #     name                     = "bootrg1"
+    #     resource_group_key       = "vm_region1"
+    #     account_kind             = "StorageV2"
+    #     account_tier             = "Standard"
+    #     account_replication_type = "LRS"
+    #     access_tier              = "Cool"
+    #   }
+    # }
 
 
 

@@ -31,6 +31,72 @@ locals {
 
 
   settings = merge(local.location, local.naming_conventions, local.applicationName)
+
+  virtual_machine_defaults = {
+  # "001" = {
+  # rg_key             = "001"
+  provision_vm_agent = true
+  # boot_diagnostics_storage_account_key = "001"
+  # os_type = "linux"
+  # keyvault_key = "001"
+  networking_interfaces = {
+    nic0 = {
+      #vnet_key                = "001"
+      #subnet_key              = "vault"
+      primary                 = true
+      name                    = "0"
+      enable_ip_forwarding    = false
+      internal_dns_name_label = "nic0"
+      #public_ip_address_key   = "example_vm_pip1_rg1"
+      subnet_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/virtualNetworks/vnet/subnets/default"
+      # public_address_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/publicIPAddresses/arnaudip"
+      # nsg_id = "/subscriptions/sub-id/resourceGroups/test-manual/providers/Microsoft.Network/networkSecurityGroups/nsgtest"
+
+    }
+  }
+  virtual_machine_settings = {
+    linux = {
+      # size                            = "Standard_F2"
+      admin_username                  = "adminuser"
+      disable_password_authentication = true
+
+      #custom_data                     = "scripts/cloud-init/install-rover-tools.config"
+      #custom_data = "compute/virtual_machine/100-single-linux-vm/scripts/cloud-init/install-rover-tools.config"
+
+
+      network_interface_keys = ["nic0"]
+
+      os_disk = {
+        name    = "example_vm1-os"
+        caching = "ReadWrite"
+        # storage_account_type    = "Standard_LRS"
+        # disk_encryption_set_key = "set1"
+      }
+      identity = {
+        type = "SystemAssigned"
+      }
+      source_image_reference = {
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"
+      }
+
+    }
+  }
+  data_disks = {
+    data1 = {
+      # name                 = "server1-data1"
+      # storage_account_type = "Standard_LRS"
+      create_option = "Empty"
+      disk_size_gb  = "10"
+      lun           = 1
+      zones         = ["1"]
+      # disk_encryption_set_key = "set1"
+    }
+  }
+
+  }
   # flatten_naming_conventions = flatten(local.naming_conventions)
 
   # network_subnets = flatten([

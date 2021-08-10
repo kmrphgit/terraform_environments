@@ -1,4 +1,4 @@
-module "asr" {
+module "arv" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//recovery_vault"
   for_each = var.settings.recovery_vaults
 
@@ -12,6 +12,6 @@ module "asr" {
   )
 }
 
-output "asr" {
-  value = module.asr
+output "arv" {
+  value = module.arv
 }
