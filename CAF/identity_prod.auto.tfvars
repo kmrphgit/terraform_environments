@@ -196,22 +196,18 @@ identity_prod = {
           address_space = ["10.4.0.0/16"]
           subnets = {
             jump_host = {
-              name             = "jump_host"
               address_prefixes = ["10.4.1.0/24"]
               nsg_key          = "jump_host"
             }
             web = {
-              name             = "web-layer"
               address_prefixes = ["10.4.2.0/24"]
               nsg_key          = "web"
             }
             app = {
-              name             = "app-layer"
               address_prefixes = ["10.4.3.0/24"]
               nsg_key          = "app"
             }
             data = {
-              name             = "data-layer"
               address_prefixes = ["10.4.4.0/24"]
               nsg_key          = "data"
               route_table_key  = "no_internet"
