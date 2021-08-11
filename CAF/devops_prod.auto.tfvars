@@ -1,6 +1,6 @@
 devops_prod = {
   prod_eastus2 = {
-    location        = "eastus2"
+    location        = "primary"
     applicationName = "devops"
     environment     = "prod"
     resource_group = {
@@ -521,7 +521,7 @@ devops_prod = {
     }
   }
   prod_centralus = {
-    location        = "centralus"
+    location        = "secondary"
     applicationName = "devops"
     environment     = "nonprod"
     resource_group = {

@@ -1,6 +1,6 @@
 identity_prod = {
-  prod_eastus2 = {
-    location        = "eastus2"
+  prod_primary = {
+    location        = "primary"
     applicationName = "identity"
     environment     = "prod"
     resource_group = {
@@ -181,14 +181,13 @@ identity_prod = {
       }
     }
   }
-  prod_centralus = {
-    location        = "centralus"
+  prod_secondary = {
+    location        = "secondary"
     applicationName = "identity"
     environment     = "prod"
     resource_group = {
       "001" = {}
     }
-
     networking = {
       vnets = {
         "001" = {
