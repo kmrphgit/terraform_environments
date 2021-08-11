@@ -7,7 +7,7 @@ governance = {
         name = "platform"
       }
       prod = {
-        name   = "production"
+        name   = "prod"
         parent = "platform"
       }
       nonprod = {

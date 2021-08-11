@@ -4,5 +4,12 @@ module "subscriptions" {
   depends_on = [null_resource.login_subs_spn]
   # depends_on = [module.globals, module.environment]
 
-  settings = module.globals.sub_settings
+  settings = merge(
+    module.globals.sub_settings,
+    {subs = var.settings.spn.subs}
+  )
+}
+
+output "subscriptions" {
+  value = module.subscriptions
 }
