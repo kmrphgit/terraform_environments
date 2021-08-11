@@ -4,7 +4,7 @@ module "private_dns" {
 
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
-  settings  = merge(
+  settings = merge(
     module.globals.settings,
     module.networking[each.value.rg_key],
     each.value

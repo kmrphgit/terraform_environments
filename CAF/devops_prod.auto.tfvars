@@ -516,7 +516,163 @@ devops_prod = {
         name               = "deskey1"
         resource_group_key = "001"
         key_vault_key_key  = "key1"
-        keyvault_key = "001"
+        keyvault_key       = "001"
+      }
+    }
+  }
+  prod_centralus = {
+    location        = "centralus"
+    applicationName = "devops"
+    environment     = "nonprod"
+    resource_group = {
+      "001" = {
+        # iteration = "001"
+      }
+    }
+    networking = {
+      vnets = {
+        "001" = {
+          address_space = ["10.6.0.0/16"]
+          rg_key        = "001"
+          specialsubnets = {
+            gateway_subnet = {
+              name             = "GatewaySubnet"
+              address_prefixes = ["10.6.5.0/24"]
+              route_table_key  = "special_rt"
+            }
+          }
+          subnets = {
+            arv = {
+              address_prefixes = ["10.6.1.0/24"]
+              nsg_key          = "arv"
+            }
+            aks = {
+              address_prefixes = ["10.6.2.0/24"]
+              nsg_key          = "aks"
+            }
+            acr = {
+              address_prefixes = ["10.6.3.0/24"]
+              nsg_key          = "acr"
+            }
+            vault = {
+              address_prefixes = ["10.6.4.0/24"]
+              nsg_key          = "vault"
+            }
+          }
+        }
+      }
+      network_security_group_definition = {
+        jump_host = {
+          nsg = [
+            {
+              name                       = "winrm",
+              priority                   = "200"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "5985"
+              source_address_prefix      = "VirtualNetwork"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "winrms",
+              priority                   = "201"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "5986"
+              source_address_prefix      = "VirtualNetwork"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "rdp-inbound-3389",
+              priority                   = "210"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "3389"
+              source_address_prefix      = "VirtualNetwork"
+              destination_address_prefix = "VirtualNetwork"
+            },
+          ]
+        }
+        acr = {
+          nsg = [
+            {
+              name                       = "acr-inbound-http",
+              priority                   = "103"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "80"
+              source_address_prefix      = "*"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "acr-inbound-https",
+              priority                   = "104"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "443"
+              source_address_prefix      = "*"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "acr-from-jump-host",
+              priority                   = "105"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "22"
+              source_address_prefix      = "10.6.1.0/24"
+              destination_address_prefix = "VirtualNetwork"
+            },
+          ]
+        }
+        aks = {
+          nsg = [
+            {
+              name                       = "aks-inbound-http",
+              priority                   = "103"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "80"
+              source_address_prefix      = "*"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "aks-inbound-https",
+              priority                   = "104"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "443"
+              source_address_prefix      = "*"
+              destination_address_prefix = "VirtualNetwork"
+            },
+            {
+              name                       = "aks-from-jump-host",
+              priority                   = "105"
+              direction                  = "Inbound"
+              access                     = "Allow"
+              protocol                   = "tcp"
+              source_port_range          = "*"
+              destination_port_range     = "22"
+              source_address_prefix      = "10.6.1.0/24"
+              destination_address_prefix = "VirtualNetwork"
+            },
+          ]
+        }
       }
     }
   }
