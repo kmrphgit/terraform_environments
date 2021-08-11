@@ -1,6 +1,6 @@
 module "virtual_machines" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//compute/virtual_machine"
-  for_each = var.settings.virtual_machines
+  for_each = try(var.settings.virtual_machines, {})
 
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key

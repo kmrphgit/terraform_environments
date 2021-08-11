@@ -9,3 +9,7 @@
 # output "spn" {
 #   value = module.globals[eastus2].spn
 # }
+
+output "test" {
+    value = module.devops_prod
+}

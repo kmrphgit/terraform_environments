@@ -1,6 +1,6 @@
 module "private_dns" {
   source   = "git::https://github.com/kmrphgit/terraform_modules.git//networking/private-dns"
-  for_each = var.settings.networking.vnets
+  for_each = try(var.settings.networking.vnets, {})
 
   rg_name   = module.rg[each.value.rg_key].rg_name
   iteration = each.key
