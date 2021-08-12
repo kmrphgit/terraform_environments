@@ -1,5 +1,5 @@
 # Terraform
-.terraform
+.terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
 creds.auto.tfvars
