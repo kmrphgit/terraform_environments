@@ -13,7 +13,7 @@ module "identity_nonprod" {
   depends_on = [module.governance]
   settings = merge(
     { spn = var.spn },
-    each.value, 
+    each.value,
     var.billing,
   )
 }
@@ -22,8 +22,8 @@ module "identity_prod" {
   source     = "./identity"
   for_each   = var.identity_prod
   depends_on = [module.governance]
-  settings   = merge(
-    { spn = var.spn},
+  settings = merge(
+    { spn = var.spn },
     each.value,
     var.billing,
   )
@@ -35,7 +35,7 @@ module "devops_prod" {
   depends_on = [module.governance]
   settings = merge(
     { spn = var.spn },
-    each.value, 
+    each.value,
     var.billing,
   )
 }

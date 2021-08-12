@@ -11,8 +11,10 @@ devops_prod = {
     networking = {
       vnets = {
         "001" = {
-          address_space = ["10.5.0.0/16"]
-          rg_key        = "001"
+          address_space     = ["10.5.0.0/16"]
+          rg_key            = "001"
+          peering_key       = "connectivity"
+          peering_iteration = "001"
           specialsubnets = {
             gateway_subnet = {
               name             = "GatewaySubnet"
@@ -389,10 +391,10 @@ devops_prod = {
     }
     virtual_machines = {
       "001" = {
-        rg_key             = "001"
-        vnet_key           = "001"
-        arv_key            = "001"
-        provision_vm_agent = true
+        rg_key              = "001"
+        vnet_key            = "001"
+        arv_key             = "001"
+        provision_vm_agent  = true
         failover_protection = true
         # when boot_diagnostics_storage_account_key is empty string "", boot diagnostics will be put on azure managed storage
         # when boot_diagnostics_storage_account_key is a non-empty string, it needs to point to the key of a user managed storage defined in diagnostic_storage_accounts
@@ -400,6 +402,7 @@ devops_prod = {
         boot_diagnostics_storage_account_key = "001"
 
         os_type = "linux"
+
 
         # the auto-generated ssh key in keyvault secret. Secret name being {VM name}-ssh-public and {VM name}-ssh-private
         keyvault_key = "001"
@@ -421,6 +424,7 @@ devops_prod = {
             size                            = "Standard_F2"
             admin_username                  = "adminuser"
             disable_password_authentication = true
+            image_type                      = "rhel"
 
             #custom_data                     = "scripts/cloud-init/install-rover-tools.config"
             #custom_data = "compute/virtual_machine/100-single-linux-vm/scripts/cloud-init/install-rover-tools.config"
