@@ -10,6 +10,6 @@
 #  value = module.identity_nonprod
 #}
 
-#output "identity_prod" {
-#  value = module.identity_prod
-#}
+output "identity_prod" {
+  value = module.identity_prod
+}
