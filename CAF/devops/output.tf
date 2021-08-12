@@ -1,3 +1,3 @@
 output "devops_prod" {
-    value = var.settings
+  value = var.settings
 }

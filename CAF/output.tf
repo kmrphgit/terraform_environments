@@ -11,5 +11,5 @@
 # }
 
 output "test" {
-    value = module.devops_prod
+  value = module.devops_prod
 }

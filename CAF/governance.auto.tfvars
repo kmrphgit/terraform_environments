@@ -2,17 +2,24 @@ governance = {
   prod_eastus2 = {
     applicationName = "governance"
     environment     = "prod"
+    location = "primary"
     mg_settings = {
-      platform = {
-        name = "platform"
+      top_level = {
+        platform = {
+          name = "platform"
+        }
+        prod = {
+          name = "prod"
+        }
+        nonprod = {
+          name = "nonprod"
+        }
       }
-      prod = {
-        name   = "prod"
-        parent = "platform"
-      }
-      nonprod = {
-        name   = "nonprod"
-        parent = "platform"
+      child_level = {
+        example = {
+          name       = "example"
+          parent_key = "nonprod"
+        }
       }
     }
   }

@@ -1,7 +1,10 @@
 module "governance" {
-  source   = "git::https://github.com/kmrphgit/terraform_modules.git//management_group"
+  source   = "./governance"
   for_each = var.governance
-  settings = merge(each.value, var.billing, var.spn.mg)
+  settings = merge(
+    each.value,
+    { mg_spn = var.spn.mg }
+  )
 }
 
 
@@ -23,5 +26,9 @@ module "devops_prod" {
   source     = "./devops"
   for_each   = var.devops_prod
   depends_on = [module.governance]
-  settings   = merge(each.value, var.billing, var.spn)
+  settings = merge(
+    { spn = var.spn },
+    each.value, var.billing,
+    var.spn
+  )
 }
