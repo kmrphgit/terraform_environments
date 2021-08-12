@@ -10,7 +10,3 @@ module "private_dns" {
     each.value
   )
 }
-
-output "private_dns" {
-  value = module.private_dns
-}

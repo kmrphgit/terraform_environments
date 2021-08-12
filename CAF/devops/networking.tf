@@ -10,9 +10,4 @@ module "networking" {
   )
 }
 
-output "networking" {
-  value = module.networking
-}
-
-
   

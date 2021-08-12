@@ -11,6 +11,3 @@ module "acr" {
   )
 }
 
-output "acr" {
-  value = module.acr
-}

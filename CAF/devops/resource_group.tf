@@ -10,6 +10,3 @@ module "rg" {
   )
 }
 
-output "rg" {
-  value = module.rg
-}

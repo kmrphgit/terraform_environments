@@ -11,7 +11,3 @@ module "arv" {
     each.value
   )
 }
-
-output "arv" {
-  value = module.arv
-}

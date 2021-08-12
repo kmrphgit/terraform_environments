@@ -7,20 +7,19 @@ module "governance" {
   )
 }
 
+module "identity_nonprod" {
+  source     = "./identity"
+  for_each   = var.identity_nonprod
+  depends_on = [module.governance]
+  settings   = merge(each.value, var.billing, var.spn)
+}
 
-# module "identity_nonprod" {
-#   source     = "./identity"
-#   for_each   = var.identity_nonprod
-#   depends_on = [module.governance]
-#   settings   = merge(each.value, var.billing, var.spn)
-# }
-
-# module "identity_prod" {
-#   source     = "./identity"
-#   for_each   = var.identity_prod
-#   depends_on = [module.governance]
-#   settings   = merge(each.value, var.billing, var.spn)
-# }
+module "identity_prod" {
+  source     = "./identity"
+  for_each   = var.identity_prod
+  depends_on = [module.governance]
+  settings   = merge(each.value, var.billing, var.spn)
+}
 
 module "devops_prod" {
   source     = "./devops"
