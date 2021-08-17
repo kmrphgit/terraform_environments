@@ -27,8 +27,8 @@ output "var_settings" {
 #   value = local.network_subnets
 # }
 
-output "virtual_machines" {
-  value = {
-    for k, v in var.virtual_machines1["001"].networking_interfaces : k => merge(var.virtual_machines2.nic0, var.virtual_machines1["001"].networking_interfaces.nic0)
-  }
-}
+#output "virtual_machines" {
+#  value = {
+#    for k, v in var.virtual_machines1["001"].networking_interfaces : k => merge(var.virtual_machines2.nic0, var.virtual_machines1["001"].networking_interfaces.nic0)
+#  }
+#}

@@ -1,5 +1,5 @@
 settings = {
-  location        = "eastus2"
+  location        = "primary"
   applicationName = "devops"
   environment     = "prod"
   resource_group = {
@@ -39,12 +39,12 @@ settings = {
             address_prefixes = ["10.5.3.0/24"]
             nsg_key          = "acr"
           }
-          # data = {
-          #   name            = "data-layer"
-          #   address_prefixes            = ["10.5.4.0/24"]
-          #   nsg_key         = "data"
-          #   route_table_key = "no_internet"
-          # }
+          data = {
+            name             = "data-layer"
+            address_prefixes = ["10.5.4.0/24"]
+            nsg_key          = "data"
+            route_table_key  = "no_internet"
+          }
         }
       }
     }

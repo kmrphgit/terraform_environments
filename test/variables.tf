@@ -23,20 +23,6 @@ variable "billing" {
   default = {}
 }
 
-# variable "networks" {
-#   type = map(object({
-#     name = string
-#     subnets    = map(object({ cidr_block = string }))
-#   }))
-#   default = {
-#     name = {
-#       name = "test-vnet"
-#       subnets = {
-#         cidr_block = "10.1.0.0/24"
-#       }
-#     }
-#   }
-# }
 variable "virtual_machines1" {
   default = {}
 }
